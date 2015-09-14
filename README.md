@@ -1,9 +1,16 @@
 # The Urban Mechanic Api
 
+## Prerequisite
+- mysql
+- nodejs
+
 ## Installation instruction
 - clone the repo
 - cd to Directory
 - npm install
+- npm install -g db-migrate
+- Specify correct credential in database.json
+- db-migrate up
 - node bin/www
 
 ## Viewing documentation
