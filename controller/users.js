@@ -1,5 +1,6 @@
-var { pool } = require('../lib/pool');
+var pool = require('../lib/pool').pool;
 var bcrypt = require('bcrypt-nodejs');
+var mysql = require('mysql');
 
 var user = {
     addUser (user, cb) {
@@ -7,31 +8,43 @@ var user = {
       user.password = bcrypt.hashSync(user.password);
 
       this.getUser(user.email, (err, users) => {       
-        if(err || users) {
+        if(err || users.length > 0) {
          cb(err || "User already exists");
         } else if (users.length === 0) {
           pool.getConnection((err, conn) => {
-            conn.query('INSERT INTO user SET ?', user, (err, result) => {
-              conn.release();
+            if (err) {
               cb(err);
-            })
-          })
+            } else {
+              var query = mysql.format('INSERT INTO user SET ?', user);
+              console.log('Query is',query);
+              conn.query(query, (err, result) => {
+                conn.release();
+                cb(err);
+              });
+            } 
+          });
         }
-      })
+      });
 
     },
 
-    getuser (email, cb)  {
+    getUser (email, cb)  {
 
       pool.getConnection((err, conn) => {
-          conn.query('SELECT * FROM user WHERE email=?', email, (err, rows) => {
+        if (err) {
+          cb(err, null);
+        } else {
+          var query = mysql.format('SELECT * FROM user WHERE email = ?',[email]);
+         console.log(query) ;
+          conn.query(query , (err, rows) => {
               conn.release();
               cb(err, rows); 
-          })
-      })
+          });
+        } 
+      });
 
     }
-}
+};
 
 module.exports = user;
 
