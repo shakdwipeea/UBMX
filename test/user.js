@@ -4,6 +4,7 @@ var app = require('../app.js');
 var port = 3000;
 
 var assert = require('assert');
+var expect = require('chai').expect;
 var request = require('supertest');
 var mysql = require('mysql');
 var pool = require('../lib/pool.js').pool;
@@ -11,7 +12,7 @@ var pool = require('../lib/pool.js').pool;
 describe('app', () => {
   var server = {};
     var User = {
-      name: 'Antash',
+      name: 'Ragahbe',
       email: 'ashakdwipeea@gmail.com',
       password: 'akash'
     };
@@ -32,6 +33,7 @@ describe('app', () => {
     server.close();
     pool.getConnection((err, conn) => {
       conn.query('DELETE FROM user WHERE email = ?', User.email, (err, rows) => {
+        conn.release();
         done(err);
       });
     });
@@ -69,6 +71,25 @@ describe('app', () => {
             });        
           } 
         });
+    });
+
+    it('should login the user and return a token', (done) => {
+      request(app)
+      .post('/users/login')
+      .send({
+        email: User.email,
+        password: User.password
+      })
+      .expect(200)
+      .end((err, res) => {
+        expect(res.body).to.have.property("name");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("phone");
+        expect(res.body).to.have.property("token");
+        expect(res.body).to.not.have.property("password");
+        expect(res.body.name).to.be.equal(User.name);
+        done();
+      });
     });
   });
 

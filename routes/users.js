@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var jwt = require('jsonwebtoken');
+
 var user = require('../controller/users');
+var config = require('../config');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -28,7 +31,7 @@ router.post('/', (req, res, next) => {
   console.log('req params', req.body);
   user.addUser(req.body, (err) => {
     if (err) {
-      res.status(500).json({
+      res.status(412).json({
         "error": err
       });
     } else {
@@ -37,6 +40,42 @@ router.post('/', (req, res, next) => {
       });
     }
   });
+});
+
+/**
+ * @api {post} /users/login User Login
+ * @apiName LoginUser
+ * @apiGroup User
+ *
+ * @apiParam {String} password Password for user
+ * @apiParam {String} email Email of the user
+ *
+ * @apiSuccess {String} name Name of user
+ * @apiSuccess {String} email Email of user
+ * @apiSuccess {String} phone Phone of user
+ * @apiSuccess {String} signed token
+ * @apiError {String} error Cause of the error
+ *
+ */
+
+
+router.post('/login', (req, res) => {
+  user.verifyUser(req.body, (err, userProfile) => {
+    if(err) {
+      res.status(412).json({
+        "error": err
+      });
+    } else {
+      var token = jwt.sign({
+        email: userProfile.email,
+        password: userProfile.password
+      }, config.jwt.secret);
+
+      userProfile.token = token;
+      delete userProfile.password;
+      res.json(userProfile);
+    }
+  }); 
 });
 
 module.exports = router;

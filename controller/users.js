@@ -29,7 +29,6 @@ var user = {
     },
 
     getUser (email, cb)  {
-
       pool.getConnection((err, conn) => {
         if (err) {
           cb(err, null);
@@ -43,6 +42,25 @@ var user = {
         } 
       });
 
+    },
+
+    verifyUser (user, cb) {
+      this.getUser(user.email, (err, users) => {
+        if(err) {
+          cb(err, null);
+        } else if(users.length > 0) {
+          var userFromDb = users[0];
+
+          if(bcrypt.compareSync(user.password, userFromDb.password)) {
+            cb(null, userFromDb);
+          } else {
+            console.log('Paa', user.password, userFromDb.password);
+            cb("Wrong Password", null);
+          }
+        } else {
+          cb("No User found");
+        }
+      });
     }
 };
 
