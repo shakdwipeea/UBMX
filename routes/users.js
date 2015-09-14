@@ -53,7 +53,7 @@ router.post('/', (req, res, next) => {
  * @apiSuccess {String} name Name of user
  * @apiSuccess {String} email Email of user
  * @apiSuccess {String} phone Phone of user
- * @apiSuccess {String} signed token
+ * @apiSuccess {String} token Generated token
  * @apiError {String} error Cause of the error
  *
  */
