@@ -5,9 +5,13 @@ var mysql = require('mysql');
 var user = {
     addUser (user, cb) {
 
+      if (!user.email || !user.password) {
+        return cb("Params missing");
+      }
+
       user.password = bcrypt.hashSync(user.password);
 
-      this.getUser(user.email, (err, users) => {       
+      this.getUser(user.email, (err, users) => {
         if(err || users.length > 0) {
          cb(err || "User already exists");
         } else if (users.length === 0) {
@@ -15,13 +19,14 @@ var user = {
             if (err) {
               cb(err);
             } else {
+              user.id = Date.now();
               var query = mysql.format('INSERT INTO user SET ?', user);
               console.log('Query is',query);
               conn.query(query, (err, result) => {
                 conn.release();
                 cb(err);
               });
-            } 
+            }
           });
         }
       });
@@ -37,9 +42,9 @@ var user = {
          console.log(query) ;
           conn.query(query , (err, rows) => {
               conn.release();
-              cb(err, rows); 
+              cb(err, rows);
           });
-        } 
+        }
       });
 
     },
@@ -58,11 +63,10 @@ var user = {
             cb("Wrong Password", null);
           }
         } else {
-          cb("No User found");
+          cb("No User found", null);
         }
       });
     }
 };
 
 module.exports = user;
-
