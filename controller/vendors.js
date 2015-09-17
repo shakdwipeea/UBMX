@@ -2,10 +2,13 @@ var pool = require('../lib/pool').pool;
 var bcrypt = require('bcrypt-nodejs');
 var mysql = require('mysql');
 
+var random = require('../lib/util').random;
+
 var Vendor = {
     addVendor (vendor, cb) {
 
       vendor.password = bcrypt.hashSync(vendor.password);
+      vendor.id = random();
 
       this.getVendor(vendor.email, (err, vendors) => {
         if(err || vendors.length > 0) {

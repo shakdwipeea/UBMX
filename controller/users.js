@@ -2,13 +2,15 @@ var pool = require('../lib/pool').pool;
 var bcrypt = require('bcrypt-nodejs');
 var mysql = require('mysql');
 
+var random = require('../lib/util').random;
+
 var user = {
     addUser (user, cb) {
 
       if (!user.email || !user.password) {
         return cb("Params missing");
       }
-
+      user.id = random();
       user.password = bcrypt.hashSync(user.password);
 
       this.getUser(user.email, (err, users) => {
@@ -19,7 +21,6 @@ var user = {
             if (err) {
               cb(err);
             } else {
-              user.id = Date.now();
               var query = mysql.format('INSERT INTO user SET ?', user);
               console.log('Query is',query);
               conn.query(query, (err, result) => {
