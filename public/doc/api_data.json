@@ -1,6 +1,55 @@
 [
   {
     "type": "post",
+    "url": "/vehicles",
+    "title": "Add a Vehicle",
+    "name": "AddVehicle",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token for admin</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success Message</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Cause of the error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/vehicles.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin",
     "title": "Vendor login",
     "name": "AdminLogin",
@@ -200,6 +249,56 @@
     },
     "version": "0.0.0",
     "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/vehicles",
+    "title": "Get vehicles",
+    "name": "Vehicle_list",
+    "group": "User",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Object[]</p> ",
+            "optional": false,
+            "field": "vehicles",
+            "description": "<p>List of vehicles</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "vehicles.name",
+            "description": "<p>Name of vehicle</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "vehicles.brand",
+            "description": "<p>Brand of vehicle</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Cause of the error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/vehicles.js",
     "groupTitle": "User"
   },
   {
