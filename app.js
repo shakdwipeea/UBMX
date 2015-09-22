@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var jwt = require('jsonwebtoken');
+
 var mysql = require('mysql');
 var config = require('./config');
 
@@ -20,7 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //  private key for jwt
-app.set('secret', 'e732njdy2medjd82');
+app.set('secret', config.jwt.secret);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -36,6 +38,24 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/vendors', vendors);
 app.use('/admin', admin);
+
+app.use((req, res, next) => {
+  if(req.body.token) {
+    jwt.verify(req.body.token, app.get('secret'), (err, decoded) => {
+      if (err) {
+        next(err);
+      } else {
+        req.body.user = decoded;
+        next();
+      }
+    });
+  } else {
+    next();
+  }
+
+});
+
+app.use('/vehicles', require('./routes/vehicles'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

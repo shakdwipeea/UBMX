@@ -77,4 +77,83 @@ describe('app', () => {
     });
   });
 
+  describe('Various functions of admin', () => {
+    var Vehicle = {
+      name: 'Vehicle A',
+      brand: 'Hyundai'
+    };
+
+    before((done) => {
+      request(app)
+      .post('/admin')
+      .send({
+        username: Admin.username,
+        password: Admin.password
+      })
+      .expect(200)
+      .end((err, res) => {
+        Admin.token=res.body.token;
+        done();
+      });
+    });
+
+    it('should ask to sign in', (done) => {
+      request(app)
+        .post('/vehicles')
+        .send({
+          token: Admin.token,
+          name: Vehicle.name,
+          brand: Vehicle.brand
+        })
+        .expect(403, done);
+    });
+
+    it('should add a vehicle to the database', (done) => {
+      request(app)
+        .post('/vehicles')
+        .send({
+          token: Admin.token,
+          name: Vehicle.name,
+          brand: Vehicle.brand
+        })
+        .expect(200)
+        .end((err, res) => {
+          console.log("NO HERE");
+          if (err) {
+            return done(err);
+          }
+
+          expect(res.body).to.not.have.property("error");
+          expect(res.body).to.have.property("success");
+
+          pool.getConnection((err, conn) => {
+            if (err) {
+              return done(err);
+            }
+
+            conn.query("SELECT * FROM vehicle WHERE name = ?", Vehicle.name, (err, rows) => {
+              conn.release();
+              if (err) {
+                return done(err);
+              }
+
+              expect(rows[0].brand).to.be.equal(Vehicle.brand);
+              done();
+            });
+          });
+
+
+        });
+    });
+
+    after((done) => {
+      pool.getConnection((err, conn) => {
+        conn.query("DELETE FROM vehicle WHERE name = ?", Vehicle.name, (err, rows) => {
+          conn.release();
+          done();
+        });
+      });
+    });
+  });
+
 });

@@ -29,7 +29,8 @@ var admin = require('../controller/admin');
        //sign the credentials
        var token = jwt.sign({
          email: adminProf.username,
-         password: adminProf.password
+         password: adminProf.password,
+         user: 'admin'
        }, config.jwt.secret);
 
        adminProf.token = token;

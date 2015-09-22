@@ -68,14 +68,15 @@ router.post('/login', (req, res) => {
     } else {
       var token = jwt.sign({
         email: userProfile.email,
-        password: userProfile.password
+        password: userProfile.password,
+        user: 'user'
       }, config.jwt.secret);
 
       userProfile.token = token;
       delete userProfile.password;
       res.json(userProfile);
     }
-  }); 
+  });
 });
 
 module.exports = router;
