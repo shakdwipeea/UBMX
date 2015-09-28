@@ -49,12 +49,12 @@ describe('app', () => {
 
   after((done) => {
     server.close();
-    /* pool.getConnection((err, conn) => {
+    pool.getConnection((err, conn) => {
       conn.query('DELETE FROM admin WHERE username = ?', Admin.username, (err, rows) => {
         conn.release();
         done(err);
       });
-     });*/
+    });
   });
 
   describe('Admin works', () => {

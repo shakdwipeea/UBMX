@@ -57,7 +57,7 @@ var user = {
                 return;
             }
 
-            conn.query('SELECT name, email, phone, password FROM user', (err, rows) => {
+            conn.query('SELECT id, name, email, phone FROM user', (err, rows) => {
                 conn.release();
                 if (err) {
                     return cb(err, null);

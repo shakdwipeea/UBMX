@@ -9,7 +9,7 @@ var config = require('../config');
 /**
  * @api {get} /users Get user listing
  * @apiName GetUser
- * @apiGroup User
+ * @apiGroup Admin
  *
  *
  * @apiSuccess {Object[]} users List of users
@@ -20,6 +20,10 @@ var config = require('../config');
  *
  */
 router.get('/', function (req, res) {
+  /**
+   * todo add jwt authentication
+   */
+
   user.getAllUsers((err, users) => {
     if (err) {
       res.status(500).json({
