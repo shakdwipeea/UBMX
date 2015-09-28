@@ -6,9 +6,31 @@ var jwt = require('jsonwebtoken');
 var user = require('../controller/users');
 var config = require('../config');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/**
+ * @api {get} /users Get user listing
+ * @apiName GetUser
+ * @apiGroup User
+ *
+ *
+ * @apiSuccess {Object[]} users List of users
+ * @apiSuccess {String} users.name Name of user
+ * @apiSuccess {String} users.email Email of user
+ * @apiSuccess {String} users.phone Phone of user
+ * @apiError {String} error Cause of the error
+ *
+ */
+router.get('/', function (req, res) {
+  user.getAllUsers((err, users) => {
+    if (err) {
+      res.status(500).json({
+        "error": err
+      });
+    } else {
+      res.json({
+        "users": users
+      });
+    }
+  });
 });
 
 

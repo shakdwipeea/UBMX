@@ -50,6 +50,24 @@ var user = {
 
     },
 
+    getAllUsers (cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                cb(err, null);
+                return;
+            }
+
+            conn.query('SELECT name, email, phone, password FROM user', (err, rows) => {
+                conn.release();
+                if (err) {
+                    return cb(err, null);
+                }
+
+                cb(err, rows);
+            });
+        });
+    },
+
     verifyUser (user, cb) {
       this.getUser(user.email, (err, users) => {
         if(err) {

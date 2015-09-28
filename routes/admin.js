@@ -6,6 +6,10 @@ var jwt = require('jsonwebtoken');
 var config = require('../config');
 var admin = require('../controller/admin');
 
+router.get('/', (req, res) => {
+  res.render('admin');
+});
+
 /**
  * @api {post} /admin Vendor login
  * @apiName AdminLogin

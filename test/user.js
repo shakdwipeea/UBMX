@@ -93,6 +93,11 @@ describe('app', () => {
     });
   });
 
+  it('should return all the users', (done) => {
+    done(new Error("Not Implemented"));
+  });
+
+
   describe('user functionality', () => {
     var Vehicle = {
       name: 'Vehicle A',
