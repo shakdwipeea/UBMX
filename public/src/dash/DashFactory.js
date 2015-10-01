@@ -5,7 +5,10 @@ angular.module("ubmk")
     .factory('Dash', function ($http, User) {
         var users = [],
             bookings = [],
-            vendors = [];
+            vendors = [],
+            vehicles = [],
+            problems = [],
+            booking_type = [];
 
 
         return {
@@ -58,6 +61,55 @@ angular.module("ubmk")
                         }).catch(function (reason) {
                             console.log(reason);
                             return vendors;
+                        })
+
+                }
+            },
+
+            getVehicles: function () {
+                if (vehicles.length > 0) {
+                    return vehicles;
+                } else {
+                    return $http.get('/vehicles')
+                        .then(function (response) {
+                            vehicles = response.data.vehicles;
+                            return response.data.vehicles;
+                        }).catch(function (reason) {
+                            console.log(reason);
+                            return vehicles;
+                        })
+
+                }
+            },
+
+            getProblems: function () {
+                if (problems.length > 0) {
+                    return problems;
+                } else {
+                    return $http.get('/problems')
+                        .then(function (response) {
+                            problems = response.data.problems;
+                            console.log("Problems", problems);
+                            return response.data.problems;
+                        }).catch(function (reason) {
+                            console.log(reason);
+                            return problems;
+                        })
+
+                }
+            },
+
+            getBookingType: function () {
+                if (booking_type.length > 0) {
+                    return booking_type;
+                } else {
+                    return $http.get('/booking_type')
+                        .then(function (response) {
+                            booking_type = response.data.booking_type;
+                            return response.data.types;
+                        }).catch(function (reason) {
+                            console.log(reason);
+                            return booking_type;
                         })
 
                 }

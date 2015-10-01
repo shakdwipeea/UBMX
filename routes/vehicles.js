@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var vehicles = require('../controller/vehicles');
 
 /**
  * @api {get} /vehicles Get vehicles
@@ -14,8 +15,16 @@ var router = express.Router();
  */
 
 router.get('/', (req, res) => {
-  res.status(412).json({
-    "error": "Not Implemented"
+  vehicles.getAllVehicles((err, vehicles) => {
+    if (err) {
+      res.status(500).json({
+        "error": err
+      });
+    } else {
+      res.json({
+        "vehicles": vehicles
+      });
+    }
   });
 });
 

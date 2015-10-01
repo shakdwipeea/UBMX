@@ -32,10 +32,10 @@ describe('app', () => {
   after((done) => {
     server.close();
     pool.getConnection((err, conn) => {
-      conn.query('DELETE FROM user WHERE email = ?', User.email, (err, rows) => {
+      /*      conn.query('DELETE FROM user WHERE email = ?', User.email, (err, rows) => {
         conn.release();
         done(err);
-      });
+       });*/
     });
   });
 
