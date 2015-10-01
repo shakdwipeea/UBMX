@@ -8,6 +8,36 @@ var config = require('../config');
 
 
 /**
+ * @api {get} /vendors Get All vendor
+ * @apiName GetAllVendors
+ * @apiGroup Vendor
+ *
+ *
+ * @apiSuccess {Object[]} vendors List of all vendors
+ * @apiSuccess {String} id id of vendor
+ * @apiSuccess {String} name name of vendor
+ * @apiSuccess {String} capacity_per_slot capacity of vendor per slot
+ * @apiSuccess {String} timings timings for vendor
+ * @apiSuccess {String} email email for vendor
+ * @apiError {String} error Cause of the error
+ *
+ */
+router.get('/', (req, res) => {
+    vendor.getAllVendors((err, vendors) => {
+        if (err) {
+            res.status(500).json({
+                "error": err
+            });
+        } else {
+            res.json({
+                "vendors": vendors
+            });
+        }
+    });
+});
+
+
+/**
  * @api {post} /vendors Vendor signup
  * @apiName AddVendor
  * @apiGroup Vendor

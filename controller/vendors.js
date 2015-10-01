@@ -47,10 +47,28 @@ var Vendor = {
 
     },
 
+    getAllVendors (cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                return cb(err, null);
+            }
+
+            /**
+             * todo get vendor's type of work
+             */
+
+            conn.query(`SELECT v.id, v.name, v.capacity_per_slot, v.timings, v.email FROM vendor as v`,
+                (err, rows) => {
+                    conn.release();
+                    cb(err, rows);
+                });
+        });
+    },
+
     verifyVendor (vendor, cb) {
-      console.log('Vendot he', vendor);
+        console.log('Vendor he', vendor);
       this.getVendor(vendor.email, (err, vendors) => {
-        console.log('Got vendors', err, vendors)
+          console.log('Got vendors', err, vendors);
         if(err) {
           cb(err, null);
         } else if(vendors.length > 0) {

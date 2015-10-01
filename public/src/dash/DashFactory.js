@@ -4,7 +4,8 @@
 angular.module("ubmk")
     .factory('Dash', function ($http, User) {
         var users = [],
-            bookings = [];
+            bookings = [],
+            vendors = [];
 
 
         return {
@@ -22,6 +23,7 @@ angular.module("ubmk")
                         return response.data.users;
                     }).catch(function (reason) {
                         console.log(reason);
+                        return users;
                     });
                 }
             },
@@ -40,7 +42,24 @@ angular.module("ubmk")
                         return response.data.bookings;
                     }).catch(function (reason) {
                         console.log(reason);
+                        return bookings;
                     });
+                }
+            },
+
+            getVendors: function () {
+                if (vendors.length > 0) {
+                    return vendors;
+                } else {
+                    return $http.get('/vendors')
+                        .then(function (response) {
+                            vendors = response.data.vendors;
+                            return response.data.vendors;
+                        }).catch(function (reason) {
+                            console.log(reason);
+                            return vendors;
+                        })
+
                 }
             }
         }

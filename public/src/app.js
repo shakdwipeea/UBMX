@@ -32,6 +32,11 @@
 							templateUrl: '/src/dash/booking/booking.tpl',
 							controller: 'BookingController as booking'
 						})
+					.state('dash.vendor', {
+						url: '/vendor',
+						templateUrl: '/src/dash/vendor/vendor.tpl',
+						controller: 'VendorController as vendor'
+					})
 			;
 
 			});
