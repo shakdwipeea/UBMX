@@ -254,6 +254,106 @@ define({ "api": [
     "groupTitle": "Admin"
   },
   {
+    "type": "get",
+    "url": "/booking_type",
+    "title": "Get booking types",
+    "name": "Boking_Types",
+    "group": "IDK",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Object[]</p> ",
+            "optional": false,
+            "field": "booking_types",
+            "description": "<p>List of booking_types</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "booking_types.id",
+            "description": "<p>Id of booking_types</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "booking_types.name",
+            "description": "<p>Name of booking_types</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Cause of the error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/booking_type.js",
+    "groupTitle": "IDK"
+  },
+  {
+    "type": "get",
+    "url": "/problems",
+    "title": "Get problems",
+    "name": "Problems_list",
+    "group": "IDK",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Object[]</p> ",
+            "optional": false,
+            "field": "problems",
+            "description": "<p>List of problems</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "problems.id",
+            "description": "<p>Id of problem</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "problems.name",
+            "description": "<p>Name of problems</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Cause of the error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/problems.js",
+    "groupTitle": "IDK"
+  },
+  {
     "type": "post",
     "url": "/bookings",
     "title": "Add a Booking",
@@ -541,6 +641,77 @@ define({ "api": [
             "optional": false,
             "field": "message",
             "description": "<p>Success Message</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Cause of the error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/vendors.js",
+    "groupTitle": "Vendor"
+  },
+  {
+    "type": "get",
+    "url": "/vendors",
+    "title": "Get All vendor",
+    "name": "GetAllVendors",
+    "group": "Vendor",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Object[]</p> ",
+            "optional": false,
+            "field": "vendors",
+            "description": "<p>List of all vendors</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of vendor</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name of vendor</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "capacity_per_slot",
+            "description": "<p>capacity of vendor per slot</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "timings",
+            "description": "<p>timings for vendor</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email for vendor</p> "
           }
         ]
       }
