@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <ul class="collection with-header">
     <li class="collection-header"> Vehicle List </li>
     <li class="collection-item" ng-repeat="result in dash.results">
@@ -6,3 +6,6 @@
     </li>
   </ul>
 </div>
+ -->
+ <!-- User dashboard coming up 
+ Sam[le template above -->
