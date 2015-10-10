@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<html lang="en"  >
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+ 
+  <title>URMK</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet"/>
+<!--     <link rel="stylesheet" href="app/assets/style.css">
+ -->
+
+   <!-- Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/assets/js/materialize.js"></script>
+  
+</head>
+
+<body ng-app ='ubmkuser' ng-controller = 'AccountController as acoount'>
+ 
+  <nav class="teal" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" ui-sref="account.login" class="brand-logo" >Urban Mechanik</a>
+  
+    <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>
+<div>
+    <!-- <div class="row">
+        <div ng-show="main.progress" class="col s6 offset-s5">
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+ -->
+     <ui-view></ui-view>
+
+</div>
+
+    <!-- all -->
+
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.js"></script>
+
+
+<!-- App   -->
+<script type="text/javascript" src = "/src/user/app.js"></script>
+<!-- Controller   -->
+<script type="text/javascript" src = "/src/user/account/AccountController.js"></script>
+<script type="text/javascript" src = "/src/user/account/login/LoginController.js"></script>
+<script type="text/javascript" src = "/src/user/account/signup/SignUpController.js"></script>
+<script type="text/javascript" src = "/src/user/dashboard/DashController.js"></script>
+
+<!-- Service   -->
+<script type="text/javascript" src = "/src/user/account/AccountFactory.js"></script>
+<script type="text/javascript" src = "/src/user/dashboard/DashFactory.js"></script>
+
+
   </body>
-</html>
+ 
+ </html>

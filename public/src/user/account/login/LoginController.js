@@ -1,7 +1,7 @@
-/*(function () {
+(function () {
     'use strict'
 
-    angular.module('user')
+    angular.module('ubmkuser')
         .controller('LoginController', function (Account, $state, $rootScope) {
             var self = this;
 
@@ -10,11 +10,11 @@
                     email: self.email,
                     password: self.password
                 }).then(function () {
-                    $state.go('/');
+                    $state.go('dash');//$state.go('/customer/dashboard'); // just for the time being
                 }).catch(function (reason) {
                     console.log(reason);
                     self.Message = "Incorrect Username or Password";
                 })
             }
         });
-})();*/
+})();
