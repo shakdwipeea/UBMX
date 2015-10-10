@@ -1,3 +1,7 @@
+/*
+Shreyansh Nahata 
+
+*/
 (function () {
     'use strict'
 
@@ -10,7 +14,7 @@
                     email: self.email,
                     password: self.password
                 }).then(function () {
-                    $state.go('dash');//$state.go('/customer/dashboard'); // just for the time being
+                    $state.go('dash');
                 }).catch(function (reason) {
                     console.log(reason);
                     self.Message = "Incorrect Username or Password";
