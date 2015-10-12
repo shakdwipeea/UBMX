@@ -2,13 +2,13 @@
     'use strict'
 
     angular.module('ubmkuser')
-        .controller('DashboardController', function ($stateParams, Dashboard) {
+        .controller('DashController', function ($stateParams, Dashboard) {
           var self = this;
 
-          Dashboard.getVehicles()
+          Dashboard.getBookings()
             .then(function (response) {
               console.log(response);
-              self.results = response.data.results;
+              self.results = response.data.bookings;
             })
             .catch(function (reason) {
               console.log(reason);

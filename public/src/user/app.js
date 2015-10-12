@@ -37,6 +37,11 @@
                     templateUrl: dir + 'dashboard/dash.tpl',
                     controller: 'DashController as dash'
                 })
+                .state('booking' , {
+                    url: '/booking',
+                    templateUrl: dir + 'booking/booking.tpl' ,
+                    controller : 'BookingController as book'
+                })
             ;
         });
 
