@@ -52,13 +52,13 @@ Shreyansh Nahata
             Booking.getBookingType()
            	.then(function(response){
              console.log(response);
-             self.b_types = response.data.booking_type;
+             self.b_types = response.data.types;
              
               }).catch(function(reason){
               	console.log(reason);
              })
 
-              
+
             Booking.getProblems()
            	.then(function(response){
              console.log(response);

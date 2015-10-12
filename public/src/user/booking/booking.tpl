@@ -23,13 +23,11 @@
 
                 </select>
             </div>
-
-
             <div class="row">
                 <label >Select Problem :</label>
                 <select  ng-model = "book.p_id"  class = "ui dropdown">
                     <option value="" disabled selected>Choose your option</option>
-                    <option ng-repeat="result in book.problem" value="{{ result.id }}">{{result.name}}</option>
+                    <option ng-repeat="result in book.problems" value="{{ result.id }}">{{result.name}}</option>
                 </select>
             </div>
                                       
