@@ -15,6 +15,7 @@
 							console.log(response);
 							token = response.data.token;
 							id = response.data.id;
+							$window.localStorage.setItem('user_id', (id*234) );
 							$window.localStorage.setItem('token' , token);
 							return response;
 						})
@@ -23,9 +24,10 @@
 				token = null;
 				id = null;
 				$window.localStorage.removeItem('token');
+				$window.localStorage.removeItem('user_id');
 			}
 			function isloggedIn(){
-				if(token && id)
+				if(token )
 					return true;
 				else
 					return false;
@@ -35,7 +37,8 @@
 				return $http.get('/users');
 			}
 			function getUserId () {
-				return id;
+				console.log($window.localStorage.getItem('user_id'));
+				return $window.localStorage.getItem('user_id');
 			}
 			function getToken () {
 				return token;
@@ -45,6 +48,7 @@
 				signUp: signUp,
 				login: login,
 				getUserNames: usernames,
+				getUserId : getUserId,
 				getToken: getToken
 			}
 		});
