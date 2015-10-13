@@ -1,10 +1,12 @@
-/*(function  () {
+(function  () {
 	'use strict'
 
-	angular.module('user')
+	angular.module('ubmkuser')
 		.controller('SignUpController', function  (Account, $state) {
 			var self = this;
+			
 			self.message = "";
+
 			self.checkUserName = function () {
 				console.log("Function called");
 				Account.getUserNames()
@@ -13,18 +15,23 @@
 							if (!response.data) {
 								self.enable = true;
 							} else {
-
-								var index = response.data.indexOf(self.username);
+								if( Object.prototype.toString.call( response.data.username ) === '[object Array]' ) {
+								var index = response.data.indexOf(self.email);
+								
 
 								if (index !== -1) {
-									self.message = "Username taken";
+									self.message = "You have already signed up....";
 									self.enable = false;
-								} else {
+								}
+							} else {
 									self.message = "";
 									self.enable = true;
 								}
 							}
 
+						})
+						.catch(function(reason){
+							console.log(reason);
 						})
 			};
 
@@ -32,9 +39,9 @@
 				console.log(self);
 
 				var data = {
-					username: self.username,
+					name: self.name,
 					password: self.password,
-					email: self.email
+					email: self.email,
 					phone: self.phone
 				};
 
@@ -45,7 +52,7 @@
 							email: data.email,
 							password: data.password
 						}).then(function () {
-							$state.go('/');
+							$state.go('dash');
 						}).catch(function (reason) {
 							console.log(reason);
 						})
@@ -56,4 +63,4 @@
 					});
 			}
 		});
-})();*/
+})();
