@@ -368,6 +368,41 @@
             "optional": false,
             "field": "token",
             "description": "<p>Token for admin</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "type_id",
+            "description": "<p>Booking type id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "vendor_id",
+            "description": "<p>Vendor id of vendor for which booking is done</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "problem_id",
+            "description": "<p>Problem id of user's problem</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "slot",
+            "description": "<p>The Slot used</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date for booking eg. 12 August, 2014</p> "
           }
         ]
       }
@@ -377,10 +412,17 @@
         "Success 200": [
           {
             "group": "Success 200",
+            "type": "<p>Object[]</p> ",
+            "optional": false,
+            "field": "booking",
+            "description": "<p>Booking object</p> "
+          },
+          {
+            "group": "Success 200",
             "type": "<p>String</p> ",
             "optional": false,
-            "field": "success",
-            "description": "<p>Success Message</p> "
+            "field": "booking.id",
+            "description": "<p>Booking id of the booking</p> "
           }
         ]
       }
@@ -400,6 +442,42 @@
     },
     "version": "0.0.0",
     "filename": "routes/bookings.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/slots/vendor_id",
+    "title": "Get slots available",
+    "name": "AddBooking",
+    "group": "User",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Number[]</p> ",
+            "optional": false,
+            "field": "slots",
+            "description": "<p>Available slots for the given vendor</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Cause of the error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/slots.js",
     "groupTitle": "User"
   },
   {

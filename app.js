@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var jwt = require('jsonwebtoken');
+var cors = require('cors');
 
 var mysql = require('mysql');
 var config = require('./config');
@@ -30,6 +31,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -59,6 +61,7 @@ app.use('/vehicles', require('./routes/vehicles'));
 app.use('/bookings', require('./routes/bookings'));
 app.use('/problems', require('./routes/problems'));
 app.use('/booking_type', require('./routes/booking_type'));
+app.use('/slots', require('./routes/slots'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

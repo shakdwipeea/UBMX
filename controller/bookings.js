@@ -4,6 +4,8 @@
 var pool = require('../lib/pool').pool;
 var mysql = require('mysql');
 
+var util = require('../lib/util');
+
 var Bookings = {
     getBookings (cb) {
         pool.getConnection((err, conn) => {
@@ -25,6 +27,21 @@ var Bookings = {
                 cb(err, rows);
             });
         });
+    },
+
+    doBooking (booking, cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                return cb(err);
+            }
+
+            booking.id = util.random();
+
+            conn.query('INSERT INTO booking SET ?', booking, (err, booking) => {
+                conn.release();
+                cb(err, booking);
+            });
+        })
     }
 };
 

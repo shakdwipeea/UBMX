@@ -12,6 +12,7 @@ var Vehicles = {
           }
 
           conn.query('SELECT * FROM vehicle', (err, rows) => {
+              conn.release();
               cb(err, rows);
           });
       })

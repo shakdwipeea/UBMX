@@ -93,6 +93,7 @@ router.post('/login', (req, res) => {
       });
     } else {
       var token = jwt.sign({
+        id: userProfile.id,
         email: userProfile.email,
         password: userProfile.password,
         user: 'user'

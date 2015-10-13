@@ -105,7 +105,7 @@ angular.module("ubmk")
                 } else {
                     return $http.get('/booking_type')
                         .then(function (response) {
-                            booking_type = response.data.booking_type;
+                            booking_type = response.data.types;
                             return response.data.types;
                         }).catch(function (reason) {
                             console.log(reason);

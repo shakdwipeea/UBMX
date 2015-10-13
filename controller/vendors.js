@@ -84,6 +84,25 @@ var Vendor = {
           cb("No vendor found", null);
         }
       });
+    },
+
+    getVendorById (id, cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                return cb(err, null);
+            }
+
+            conn.query('SELECT * FROM vendor WHERE id = ?', id, (err, rows) => {
+                conn.release();
+
+                if (rows && rows.length > 0) {
+                    cb(err, rows[0]);
+                } else {
+                    cb("No such vendor", null);
+                }
+
+            });
+        })
     }
 };
 
