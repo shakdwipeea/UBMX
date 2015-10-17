@@ -9,7 +9,7 @@ var Admin = {
         cb(err, null);
       } else {
         var query = mysql.format('SELECT * FROM admin WHERE username = ? ',
-              [ admin.username]);
+            admin.username);
 
         console.log(query) ;
         conn.query(query , (err, rows) => {

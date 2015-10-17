@@ -3,20 +3,31 @@
  */
 var pool = require('../lib/pool').pool;
 var mysql = require('mysql');
+var helper = require('../lib/helper');
 
-var Vehicles = {
-  getAllVehicles (cb) {
-      pool.getConnection((err, conn) => {
-          if(err) {
-              return cb(err, null);
-          }
+exports.getAllVehicles = (cb) => {
+    pool.getConnection((err, conn) => {
+        if (err) {
+            return cb(err, null);
+        }
 
-          conn.query('SELECT * FROM vehicle', (err, rows) => {
-              conn.release();
-              cb(err, rows);
-          });
-      })
-  }
+        conn.query('SELECT * FROM vehicle', (err, rows) => {
+            conn.release();
+            cb(err, rows);
+        });
+    })
 };
 
-module.exports = Vehicles;
+exports.addVehicle = (vehicle, cb) => {
+    pool.getConnection((err, conn) => {
+        if (err) {
+            return cb(err);
+        }
+
+        vehicle.id = helper.random();
+        conn.query("INSERT INTO vehicle SET ? ", vehicle, (err, rows) => {
+            conn.release();
+            cb(err);
+        });
+    });
+};

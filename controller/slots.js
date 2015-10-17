@@ -4,7 +4,7 @@
 var pool = require('../lib/pool').pool;
 var mysql = require('mysql');
 
-var util = require('../lib/util');
+var util = require('../lib/helper');
 
 var Slots = {
     getVendorSlots (vendor_id, cb) {

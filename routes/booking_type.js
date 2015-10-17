@@ -30,10 +30,38 @@ router.get('/', (req, res) => {
     })
 });
 
+/**
+ * @api {post} /booking_type Get booking types
+ * @apiName Boking Types
+ * @apiGroup IDK
+ *
+ * @apiParam {String} name booking type name
+ * @apiSuccess {Object[]} booking_type Booking type added
+ * @apiSuccess {String} booking_type.id Id of booking_types
+ * @apiSuccess {String} booking_type.name Name of booking_types
+ * @apiError {String} error Cause of the error
+ *
+ */
 router.post('/', (req, res) => {
-    res.status(500).json({
-        "error": "Not Implemented"
-    })
+    if (req.body.user.user === 'admin') {
+        bookingType.addBookingType({
+            name: req.body.name
+        }, (err, type) => {
+            if (err) {
+                res.status(500).json({
+                    "error": err
+                });
+            } else {
+                res.json({
+                    "type": type
+                })
+            }
+        })
+    } else {
+        res.status(403).json({
+            "error": "Not authorized"
+        });
+    }
 });
 
 module.exports = router;

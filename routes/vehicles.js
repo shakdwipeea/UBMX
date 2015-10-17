@@ -34,15 +34,32 @@ router.get('/', (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} token Token for admin
+ * @apiParam {Object} vehicle Vehicle details
+ * @apiParam {String} vehicle.name Name of vehicle
+ * @apiParam {String} vehicle.brand Brand of vehicle
  *
  * @apiSuccess {String} success Success Message
  * @apiError {String} error Cause of the error
  *
  */
 router.post('/', (req, res) => {
-  res.status(412).json({
-    "error": "Not Implemented"
-  });
+  if (req.body.user.user == 'admin') {
+    vehicles.addVehicle(req.body.vehicle, (err) => {
+      if (err) {
+        res.status(500).json({
+          "error": err
+        });
+      } else {
+        res.json({
+          "message": "Vehicle added"
+        });
+      }
+    })
+  } else {
+    res.status(403).json({
+      "error": "Not authorized"
+    })
+  }
 });
 
 module.exports = router;

@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/vendors', vendors);
+
 app.use('/admin', admin);
 
 app.use((req, res, next) => {
@@ -57,6 +57,7 @@ app.use((req, res, next) => {
 
 });
 
+app.use('/vendors', vendors);
 app.use('/vehicles', require('./routes/vehicles'));
 app.use('/bookings', require('./routes/bookings'));
 app.use('/problems', require('./routes/problems'));

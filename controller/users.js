@@ -2,7 +2,7 @@ var pool = require('../lib/pool').pool;
 var bcrypt = require('bcrypt-nodejs');
 var mysql = require('mysql');
 
-var random = require('../lib/util').random;
+var random = require('../lib/helper').random;
 
 var user = {
     addUser (user, cb) {

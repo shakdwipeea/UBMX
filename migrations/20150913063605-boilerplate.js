@@ -172,6 +172,18 @@ exports.up = function(db, callback) {
 	        		mapping: 'id'
         		}
         	},
+			vehicle_id: {
+				type: 'int',
+				foreignKey: {
+					name: 'booking_vehicle_id_fk',
+					table: 'vehicle',
+					rules: {
+						onDelete: 'CASCADE',
+						onUpdate: 'RESTRICT'
+					},
+					mapping: 'id'
+				}
+			},
         	status: 'string',
         	problem_id: {
         		type: 'int',
@@ -198,7 +210,9 @@ exports.up = function(db, callback) {
         		}
         	},
         	feedback: 'string',
-        	rating: 'string'
+			rating: 'string',
+			pickup_add: 'string',
+			drop_add: 'string'
         }),
 		db.createTable.bind(db, 'address', {
 			id: { type: 'int', primaryKey: true },

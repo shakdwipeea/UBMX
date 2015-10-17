@@ -31,10 +31,39 @@ router.get('/', (req, res) => {
     })
 });
 
+
+/**
+ * @api {get} /problems Get problems
+ * @apiName Problems list
+ * @apiGroup IDK
+ *
+ * @apiParam {String} name Name of problem
+ * @apiSuccess {Object[]} problem Name of problem added
+ * @apiSuccess {String} problem.id Id of problem
+ * @apiSuccess {String} problem.name Name of problems
+ * @apiError {String} error Cause of the error
+ *
+ */
 router.post('/', (req, res) => {
-    res.status(500).json({
-        "error": "Not Implemented"
-    });
+    if (req.body.user.user === 'admin') {
+        problems.addProblem({
+            name: req.body.name
+        }, (err, type) => {
+            if (err) {
+                res.status(500).json({
+                    "error": err
+                });
+            } else {
+                res.json({
+                    "type": type
+                })
+            }
+        })
+    } else {
+        res.status(403).json({
+            "error": "Not authorized"
+        });
+    }
 });
 
 module.exports = router;

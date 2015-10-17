@@ -2,13 +2,14 @@ var pool = require('../lib/pool').pool;
 var bcrypt = require('bcrypt-nodejs');
 var mysql = require('mysql');
 
-var random = require('../lib/util').random;
+var e = require('../lib/helper');
 
 var Vendor = {
     addVendor (vendor, cb) {
 
+        console.log("Util", e);
       vendor.password = bcrypt.hashSync(vendor.password);
-      vendor.id = random();
+        vendor.id = e.myRandomNumber();
 
       this.getVendor(vendor.email, (err, vendors) => {
         if(err || vendors.length > 0) {
@@ -22,7 +23,7 @@ var Vendor = {
               console.log('Query is',query);
               conn.query(query, (err, result) => {
                 conn.release();
-                cb(err);
+                  cb(err, vendor);
               });
             }
           });
@@ -103,6 +104,58 @@ var Vendor = {
 
             });
         })
+    },
+
+    /**
+     * @param {object} data Data to pass
+     * @param {number} data.vendor_id vendor id
+     * @param {number[]} data.booking_type_ids booking type ids
+     *
+     */
+        addBookingType (data, cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                return cb(err, null);
+            }
+
+            var values = data.booking_type_ids.map((booking_type_id) => {
+                return [e.myRandomNumber(), parseInt(booking_type_id), data.vendor_id];
+            });
+            console.log(values);
+            var sql = "INSERT INTO booking_type_vendor (id, type_id, vendor_id) VALUES ? ";
+
+            conn.query(sql, [values], (err) => {
+                conn.release();
+                console.log("ad booking type", err);
+                cb(err);
+            });
+        });
+    },
+
+    /**
+     * @param {object} data Data to pass
+     * @param {number} data.vendor_id vendor id
+     * @param {number[]} data.problem_type_ids problem type ids
+     *
+     */
+        addProblemType (data, cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                return cb(err, null);
+            }
+
+            var values = data.problem_type_ids.map((problem_type_id) => {
+                return [e.myRandomNumber(), parseInt(problem_type_id), data.vendor_id];
+            });
+
+            var sql = "INSERT INTO problem_vendor (id, problem_id, vendor_id) VALUES ? ";
+            console.log(values);
+            conn.query(sql, [values], (err) => {
+                conn.release();
+                console.log("Error add problem type", err);
+                cb(err);
+            });
+        });
     }
 };
 

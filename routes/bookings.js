@@ -6,7 +6,7 @@ var router = express.Router();
 
 var bookings = require('../controller/bookings'),
     slots = require('../controller/slots'),
-    utils = require('../lib/util');
+    utils = require('../lib/helper');
 
 /**
  * @api {get} /bookings Get all bookings
@@ -45,6 +45,26 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:vendorId', (req, res) => {
+    if (true) {
+        bookings.getBookingByVendor(req.params.vendorId, (err, rows) => {
+            if (err) {
+                res.status(500).json({
+                    "error": err
+                })
+            } else {
+                res.json({
+                    "bookings": rows
+                })
+            }
+        })
+    } else {
+        res.status(403).json({
+            "error": "Not authorized"
+        })
+    }
+});
+
 /**
  * @api {post} /bookings Add a Booking
  * @apiName AddBooking
@@ -56,6 +76,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} problem_id Problem id of user's problem
  * @apiParam {Number} slot The Slot used
  * @apiParam {String} date The date for booking eg. 12 August, 2014
+ * @apiParam {String} vehicle_id Vehice id
  *
  * @apiSuccess {Object[]} booking Booking object
  * @apiSuccess {String} booking.id Booking id of the booking
@@ -68,6 +89,9 @@ router.post('/', (req, res) => {
         type_id: req.body.type_id,
         vendor_id: req.body.vendor_id,
         problem_id: req.body.problem_id,
+        vehicle_id: req.body.vehicle_id,
+        pickup_add: req.body.pickup_add,
+        drop_add: req.body.drop_add,
         status: "Pending"
     };
 

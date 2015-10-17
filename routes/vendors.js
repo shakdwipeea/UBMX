@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var jwt = require('jsonwebtoken');
-
-var vendor = require('../controller/vendors');
-var config = require('../config');
+var jwt = require('jsonwebtoken'),
+    vendor = require('../controller/vendors'),
+    config = require('../config'),
+    async = require('async');
 
 
 /**
@@ -45,6 +45,10 @@ router.get('/', (req, res) => {
  * @apiParam {String} name Full Name of vendor
  * @apiParam {String} password Password for vendor
  * @apiParam {String} email Email of the vendor
+ * @apiParam {String} capacity_per_slot
+ * @apiParam {String} timings Timings of vendor
+ * @apiParam {Number[]} problem_ids Problem ids supported
+ * @apiParam {Number[]} booking_type_ids Booking types supported
  *
  * @apiSuccess {String} message Success Message
  * @apiError {String} error Cause of the error
@@ -52,18 +56,52 @@ router.get('/', (req, res) => {
  */
 
  router.post('/', (req, res) => {
-   console.log('req params', req.body);
-   vendor.addVendor(req.body, (err) => {
-     if (err) {
-       res.status(412).json({
-         "error": err
-       });
+     console.log("req params ", req.body);
+
+     if (req.body.user.user === 'admin') {
+         vendor.addVendor({
+             name: req.body.name,
+             capacity_per_slot: req.body.capacity_per_slot,
+             timings: req.body.timings,
+             email: req.body.email,
+             password: req.body.password
+         }, (err, newVendor) => {
+             if (err) {
+                 res.status(500).json({
+                     "error": err
+                 });
+             } else {
+                 async.parallel([
+                     (callback) => {
+                         vendor.addBookingType({
+                             vendor_id: newVendor.id,
+                             booking_type_ids: req.body.booking_type_ids
+                         }, callback);
+                     },
+                     (callback) => {
+                         vendor.addProblemType({
+                             vendor_id: newVendor.id,
+                             problem_type_ids: req.body.problem_ids
+                         }, callback);
+                     }
+                 ], (err) => {
+                     if (err) {
+                         res.status(500).json({
+                             "error": err
+                         })
+                     } else {
+                         res.json({
+                             "message": "Vendor added Successfully"
+                         })
+                     }
+                 })
+             }
+         })
      } else {
-       res.json({
-         "message": "User added"
-       });
+         res.status(403).json({
+             "error": "Not authorized"
+         });
      }
-   });
  });
 
 /**

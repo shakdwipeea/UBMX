@@ -81,7 +81,7 @@ gulp.task('client', function () {
 
 
 gulp.task('admin-build', function () {
-    return gulp.src(['public/src/app.js', 'public/src/**/*.js'])
+    return gulp.src(['public/src/app.js', 'public/src/admin/**/*.js'])
         .pipe(concat('admin.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
