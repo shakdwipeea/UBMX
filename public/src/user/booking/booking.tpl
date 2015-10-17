@@ -9,18 +9,19 @@
                 </select>
             </div> -->
             <div class="row">
-                <label >Select a vendors</label>
-                <select ng-model = "book.ven_id" class = "ui dropdown" required>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option ng-repeat="result in book.vendors" value="{{ result.id }}">{{result.name}}</option>
+                
+                <label >Select a vendor:</label>
+                <select  ng-model = "book.ven_id" ng-options="result.id as result.name for result in book.vendors"   ng-change = "book.slotsmatter()"  class = "ui dropdown" required>
+                    <!-- <option value="" disabled selected>Choose your option</option>
+                    <option ng-change = "book.slotsmatter()" ng-options="result.name for result in book.vendors" value="{{ result.id }}">{{result.name}}</option> -->
                 </select>
+            
             </div>
             <div class="row">
                 <label >Select a Problem type</label>
                 <select ng-model = "book.t_id"  class = "ui dropdown" required>
                     <option value="" disabled selected>Choose your option</option>
                     <option ng-repeat="result in book.b_types" value="{{ result.id }}">{{result.name}}</option>
-
                 </select>
             </div>
             <div class="row">
@@ -32,22 +33,51 @@
             </div>
             <div class="row">
                 <label >Select a date: </label>
-                    <input  ng-model="book.date"  type="date" name="date" required>
+                 <select  ng-model = "book.date"  class = "ui dropdown" required>
+                   <option value="" disabled selected>Choose your option</option>
+                    <option ng-repeat="result in book.alldates" value="{{ result }}">{{result}}</option>
+                </select>
             </div>
             <div class="row">
                 <label >Select a slot: </label>
-                <select ng-model = "book.slot" class = "ui dropdown" required>
+                <select  ng-model = "book.slot" ng-change = "book.slotsmatter()"   class = "ui dropdown" required>
                     <option value="" disabled selected>Choose your option</option>
-                    <option ng-repeat="result in [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]" value="{{ result }}">{{result}}</option>
+                    <option ng-repeat="result in book.slots" value="{{ result }}">{{result}}</option>
                 </select>
             </div>
+             
+<!--            <div class="row">
+<label >Pickup Address:  </label></br>
+                <label >Flat No. : </label>
+                <input  ng-model="book.da1"  type="text"  name="Drop address line 1"  required></br>
+                <label >Street Name: </label>
+                <input  ng-model="book.da2"  type="text"  name="Drop address line 2"  required></br>
+                <label >Landmark: </label>
+                <input  ng-model="book.da3"  type="text"  name="Drop address line 3"  required></br>
+                <label >City: </label>
+                  <input  ng-model="book.da4"  type="text"  name="Drop address line 4"  required></br>
+                
+            </div>
+
+            <div class="row">
+<label >Drop Address:  </label></br>
+                <label >Flat No. : </label>
+                <input  ng-model="book.pa1"  type="text"  name="Pickup address line 1"  required></br>
+                <label >Street Name: </label>
+                <input  ng-model="book.pa2"  type="text"  name="Pickup address line 2"  required></br>
+                <label >Landmark: </label>
+                <input  ng-model="book.pa3"  type="text"  name="Pickup address line 3"  required></br>
+                <label >City: </label>
+                  <input  ng-model="book.pa4"  type="text"  name="Pickup address line 4"  required></br>
+                
+            </div>
                                       
-            <div class=" col s12">
+ -->            <div class=" col s12">
                <button class="waves-effect waves-light btn" type="submit" name="action">Book Now!!!
                 <i class="material-icons">send</i>
                 </button>
            </div>
        </form>
 
-{{ book .message }} 
+{{ book.message }} 
     </div>

@@ -5,11 +5,12 @@
  
   <title>URMK</title>
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-   <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"> -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>   
+ -->    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet"/>
-<!--     <link rel="stylesheet" href="app/assets/style.css">
- -->
 
    <!-- Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -19,17 +20,21 @@
 
 <body ng-app ='ubmkuser' ng-controller = 'AccountController as acoount'>
  
-  <nav class="teal" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" ui-sref="account.login" class="brand-logo" >Urban Mechanik</a>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+<div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a id="logo-container" ui-sref="account.login" class="navbar-brand" >Urban Mechanik</a>
   
-    <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
     </div>
   </nav>
-</div>
+
 <div>
   <!-- <div class="parallax" ><img src="assets/images/bg1.jpg" alt="Unsplashed background img 1"></div> -->
 
@@ -39,7 +44,7 @@
 </div>
 
     <!-- all -->
-<script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> -->
@@ -54,6 +59,10 @@
 <script type="text/javascript" src = "/src/user/dashboard/DashController.js"></script>
 <script type="text/javascript" src = "/src/user/booking/BookingController.js"></script>
 <!-- Service   -->
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/twix.js/0.6.5/twix.min.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/async/1.4.2/async.min.js"></script>
+
 <script type="text/javascript" src = "/src/user/account/AccountFactory.js"></script>
 <script type="text/javascript" src = "/src/user/dashboard/DashFactory.js"></script>
 <script type="text/javascript" src = "/src/user/booking/BookingFactory.js"></script>

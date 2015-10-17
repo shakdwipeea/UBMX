@@ -15,7 +15,7 @@
 							console.log(response);
 							token = response.data.token;
 							id = response.data.id;
-							$window.localStorage.setItem('user_id', (id*234) );
+							//$window.localStorage.setItem('user_id', (id*234) );
 							$window.localStorage.setItem('token' , token);
 							return response;
 						})
@@ -37,8 +37,8 @@
 				return $http.get('/users');
 			}
 			function getUserId () {
-				console.log($window.localStorage.getItem('user_id'));
-				return $window.localStorage.getItem('user_id');
+				//console.log($window.localStorage.getItem('user_id')/234);
+				return id;
 			}
 			function getToken () {
 				return token;

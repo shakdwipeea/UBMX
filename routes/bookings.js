@@ -64,7 +64,7 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
     var booking = {
-        user_id: req.body.user.id,
+        user_id: req.body.user_id,
         type_id: req.body.type_id,
         vendor_id: req.body.vendor_id,
         problem_id: req.body.problem_id,

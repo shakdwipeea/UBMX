@@ -25,8 +25,9 @@ var Slots = {
            if (err) {
                return cb(err, null);
            }
-
-           slot.id = util.random();
+           console.log(require('../lib/util'));
+           slot.id = require('../lib/util').random();
+           console.log(util.random);
 
            conn.query('INSERT INTO slot SET ?', slot, (err, slot) => {
                conn.release();
