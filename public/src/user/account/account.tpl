@@ -1,10 +1,21 @@
 <div class="row">
-    <div class="col m4 offset-m4 s12">
-        <ul class="tabs">
-            <li class="tab col m6 s6"><a ui-sref-active="ak-active-tab" ui-sref="account.login">Log In</a></li>
-            <li class="tab col m6 s6"><a ui-sref-active="ak-active-tab" ui-sref="account.signup">Sign Up</a></li>
-        </ul>
-        <ui-view></ui-view>
+<div id="content-wrapper" class="mui--text-center">
+      <div class="mui--appbar-height"></div>
+      <br>
+      <br>
+      <div class="mui--text-display3">URMK</div>
+      <br>
+      <br>
+      <a ui-sref-active="ak-active-tab" ui-sref="account.login"><button class="mui-btn mui-btn--raised">Log In</button></a>
+
+      <a ui-sref-active="ak-active-tab" ui-sref="account.signup"><button class="mui-btn mui-btn--raised">Sign Up</button></a>
     </div>
+    <footer>
+      <div class="mui-container mui--text-center mui--text-bottom">
+        
+      </div>
+    </footer>
+        <ui-view></ui-view>
+    
 
 </div>
