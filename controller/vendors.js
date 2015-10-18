@@ -156,6 +156,19 @@ var Vendor = {
                 cb(err);
             });
         });
+    },
+
+    getByLocation (location, cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                return cb(err, null);
+            }
+
+            conn.query("SELECT * FROM vendor WHERE location = ?", location, (err, rows) => {
+                conn.release();
+                cb(err, rows);
+            });
+        });
     }
 };
 

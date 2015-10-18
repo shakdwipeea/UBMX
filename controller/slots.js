@@ -7,13 +7,13 @@ var mysql = require('mysql');
 var util = require('../lib/helper');
 
 var Slots = {
-    getVendorSlots (vendor_id, cb) {
+    getVendorSlots (vendor_id, slot_day, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
                 return cb(err, null);
             }
 
-            conn.query('SELECT * FROM slot WHERE vendor_id = ?', vendor_id, (err, slots) => {
+            conn.query('SELECT * FROM slot WHERE vendor_id = ? AND date = ?', vendor_id, slot_day, (err, slots) => {
                 conn.release();
                 return cb(err, slots);
             });
@@ -28,7 +28,7 @@ var Slots = {
 
            slot.id = util.random();
 
-           conn.query('INSERT INTO slot SET ?', slot, (err, slot) => {
+            conn.query('INSERT INTO slot SET ?', slot, (err, rows) => {
                conn.release();
                cb(err, slot);
            });
@@ -49,7 +49,7 @@ var Slots = {
                 } , originalSlot.id],
                 (err, rows) => {
                 conn.release();
-                cb(err, rows);
+                    cb(err, slot);
             });
         });
     }

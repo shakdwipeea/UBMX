@@ -6,6 +6,9 @@ angular.module("ubmk")
         console.log("Usr COntroller");
         var self = this;
 
+        /**
+         * todo add edit
+         */
         var users = Dash.getUsers();
 
         if (Array.isArray(users)) {

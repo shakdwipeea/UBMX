@@ -19,7 +19,9 @@ var util = require('../lib/helper');
 router.get('/:vendor_id', (req, res) => {
     var vendor_id = req.params.vendor_id;
 
-    util.getAvailableSlots(vendor_id, (err, data) => {
+    var slot_day = req.body.slot_day;
+
+    util.getAvailableSlots(vendor_id, slot_day, (err, data) => {
         if (err) {
             res.status(500).json({
                 "error": err

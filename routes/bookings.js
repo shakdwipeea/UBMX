@@ -45,6 +45,21 @@ router.get('/', (req, res) => {
     });
 });
 
+
+router.get('/:user_id', (req, res) => {
+    bookings.getBookingByUserId(req.params.user_id, (err, bookings) => {
+        if (err) {
+            res.status(500).json({
+                "error": err
+            });
+        } else {
+            res.json({
+                "bookings": bookings
+            });
+        }
+    })
+});
+
 router.get('/:vendorId', (req, res) => {
     if (true) {
         bookings.getBookingByVendor(req.params.vendorId, (err, rows) => {
@@ -98,7 +113,7 @@ router.post('/', (req, res) => {
     var slot = req.body.slot;
     var date = req.body.date;
 
-    utils.getAvailableSlots(booking.vendor_id, (err, data) => {
+    utils.getAvailableSlots(booking.vendor_id, date, (err, data) => {
         if (err) {
             res.status(500).json({
                 "error": err

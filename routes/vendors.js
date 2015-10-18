@@ -36,6 +36,20 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:location', (req, res) => {
+    vendor.getByLocation(req.params.location, (err, rows) => {
+        if (err) {
+            res.status(500).json({
+                "error": err
+            })
+        } else {
+            res.json({
+                "vendors": rows
+            });
+        }
+    });
+});
+
 
 /**
  * @api {post} /vendors Vendor signup
@@ -123,6 +137,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/login', (req, res) => {
+    console.log(req.body);
   vendor.verifyVendor(req.body, (err, vendorProfile) => {
     if(err) {
       res.status(412).json({
