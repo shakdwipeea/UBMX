@@ -2,7 +2,7 @@
   <div class="mui-col-md-6 mui-col-md-offset-3">
  <div class="mui-panel">
     <form ng-submit="login.submit()" class="col s12">
-      <div class="row">
+      <div class="row" style="margin:5%;">
         <div class="mui-textfield mui-textfield--float-label">
           <input data-ng-model="login.email" id="email" type="email" class="validate">
           <label for="email" data-error="wrong" data-success="right">Email</label>
@@ -15,6 +15,8 @@
           <button class="mui-btn mui-btn--raised" type="submit" name="action">Log In
             <i class="material-icons">send</i>
          </button>
+
+        
         </div>
       </div>
       <div data-ng-bind="login.Message">

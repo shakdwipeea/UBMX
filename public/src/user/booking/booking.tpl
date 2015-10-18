@@ -2,10 +2,12 @@
       <div class="mui-col-md-6 mui-col-md-offset-3">
        <div class="mui-panel">        
        <form ng-submit = "book.submit()" name="bookingForm" id="bookingForm" class="horizontal-form">
+              <div style="margin:5%;">
+
             <div class="row">
-                <label >Enter the Location:</label>
+                <label >Enter the Location:</label>&nbsp;<button ng-model="book.locations"  ng-change = "book.ven_locations()"  class="mui-btn mui-btn--raised" onclick="getLocation1()"><i style="margin-top:25%;" class="material-icons">location_on</i></button>
                 <div class="mui-textfield mui-textfield--float-label">
-                <input  ng-model="book.locations"  ng-change = "book.ven_locations()" type="text"  name="Location"  required></br>
+                <input  ng-model="book.locations"  ng-change = "book.ven_locations()" type="text"  name="Location"  ></br>
                 </div>
             </div>
 
@@ -51,6 +53,7 @@
                    <option value="" disabled selected>Choose your option</option>
                     <option ng-repeat="result in book.alldates" value="{{ result }}">{{result}}</option>
                 </select>
+                <time-date-picker autosave theme="bootstrap" orientation="false" ng-model="dateValue" weekdays="['M','T','W','T','F','S']"></time-date-picker>
             </div>
             </div>
             <div class="row">
@@ -66,58 +69,26 @@
              
            <div class="row">
 <label >Pickup Address:  </label></br>
-                <<!-- label >Flat No. : </label>
-                <div class="mui-textfield mui-textfield--float-label">
-                <input  ng-model="book.da1"  type="text"  name="Drop address line 1"  required></br>
-                </div>
-                <label >Street Name: </label>
-                <div class="mui-textfield mui-textfield--float-label">
-                <input  ng-model="book.da2"  type="text"  name="Drop address line 2"  required></br>
-                </div>
-                <label >Landmark: </label>
-                <div class="mui-textfield mui-textfield--float-label">
-            <input  ng-model="book.da3"  type="text"  name="Drop address line 3"  required></br>
-                </div>
-                <label >City: </label>
-            <div class="mui-textfield mui-textfield--float-label">
-                  <input  ng-model="book.da4"  type="text"  name="Drop address line 4"  required></br>
-            </div> -->
-            
-            <textarea ng-model = "book.paddr" row = "5" column = "40" required></textarea>    
-            
+            <textarea ng-model = "book.paddr" row = "5" column = "40" required></textarea>                
             </div>
 
             <div class="row">
-<label >Drop Address:  </label></br>
-            <!--     <label >Flat No. : </label>
-                <div class="mui-textfield mui-textfield--float-label">
-                <input  ng-model="book.pa1"  type="text"  name="Pickup address line 1"  required></br>
-                </div>
-                <label >Street Name: </label>
-                <div class="mui-textfield mui-textfield--float-label">
-                <input  ng-model="book.pa2"  type="text"  name="Pickup address line 2"  required></br>
-                </div>
-                <label >Landmark: </label>
-                <div class="mui-textfield mui-textfield--float-label">
-                <input  ng-model="book.pa3"  type="text"  name="Pickup address line 3"  required></br>
-                </div>
-                <label >City: </label>
-                <div class="mui-textfield mui-textfield--float-label">
-                  <input  ng-model="book.pa4"  type="text"  name="Pickup address line 4"  required></br>
-                </div>     -->
+<label >Drop Address:  </label>&nbsp;<button class="mui-btn mui-btn--raised" onclick="getLocation2()"><i style="margin-top:25%;" class="material-icons">location_on</i></button></br>
                 <textarea ng-model = "book.daddr" row = "5" column = "40" required></textarea>    
             </div>
                                       
     
- <div class=" col s12">
-               <button class="mui-btn mui-btn--raised" type="submit" name="action">Book Now
+<div class=" col s12">
+               <button class="mui-btn mui-btn--primary" type="submit" name="action">Book Now
                 <i class="material-icons">send</i>
-                </button>
+                </button>&nbsp; &nbsp;
+                <a href="#/dashboard"><button class="mui-btn mui-btn--danger">Back</button></a>
            </div>
        </form>
 
 {{ book .message }} 
     </div>
-     <a href="#/dashboard"><button class="mui-btn mui-btn--raised">Go Back!!</button></a>
+    </div>
+     
     </div>
     </div>
