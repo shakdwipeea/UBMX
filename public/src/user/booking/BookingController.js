@@ -1,5 +1,5 @@
 /*
-Shreyansh Nahata 
+Created By : Shreyansh Nahata 
 
 */
 (function () {
@@ -13,7 +13,7 @@ Shreyansh Nahata
             self.message="";
             self.slot = 11; /*default slot value*/
             
-
+            self.location = "";
             self.submit = function () {
 
               var uidno = Account.getUserId();
@@ -22,14 +22,14 @@ Shreyansh Nahata
               console.log(uidno);
               
             	Booking.do_booking({
-                    
+                location: self.locations;    
                 user_id : uidno,
                 type_id : self.t_id,
                 vendor_id :self.ven_id,
                 problem_id : self.p_id,
-                /*pickup_addr : paddr,
-                drop_addr : daddr,  */   /*ToDo implement change of address thing in v 2*/
-                /*vehicle_id : self.v_id,   */   /*vehicle_id to be added*/
+                pickup_addr : self.paddr,
+                drop_addr : self.daddr,     /*ToDo implement change of address thing in v 2*/
+                vehicle_id : self.v_id,      /*vehicle_id to be added*/
                 slot : self.slot,
                 date : self.date
 
@@ -41,11 +41,21 @@ Shreyansh Nahata
             			/*self.message = "Their is a problem in booking !!";*/
             		})
             };
-            
+            self.ven_locations = function(){
+              console.log('location');
+
+              Booking.getVendor(self.locations)
+              .then(function(response){
+                console.log(response);
+                self.vendors = response.data.vendors;
+              }).catch(function(reason){
+                console.log(reason);
+              })
+            }
             self.slotsmatter = function(){
               console.log("slotsmatter");
                 
-                Booking.getSlots(self.ven_id)
+                Booking.getSlots(self.ven_id, self.date)
                   .then(function(response){
                      console.log(response);
                      self.slots = response.data.times;
@@ -66,15 +76,6 @@ Shreyansh Nahata
 	           	.catch(function(reason){
 	              	console.log(reason);
 	              })
-
-            Booking.getVendor()
-           	.then(function(response){
-             console.log(response);
-             self.vendors = response.data.vendors;
-              }).catch(function(reason){
-              	console.log(reason);
-             })
-             /*slot_id = vendor_list.capacity_per_slot;*/
 
 
             self.alldates = Booking.getDates();  
@@ -98,9 +99,6 @@ Shreyansh Nahata
               }).catch(function(reason){
               	console.log(reason);
              })
-            
 
-            
-            			            
         });
 })();

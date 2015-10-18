@@ -1,3 +1,7 @@
+/*
+Created By : Shreyansh Nahata 
+
+*/
 (function  () {
 	'use strict'
 
@@ -5,8 +9,9 @@
 		.controller('AccountController', function  ( Account, $state ) {
 			var self = this;
 			
-			/*self.loggedIn = Account.isLoggedIn();*/
-
+			self.loggedin = Account.isloggedIn();
+			console.log(Account.isloggedIn());
+			
 			self.logout = function(){
 				Account.logout()
 				.then(function(response){

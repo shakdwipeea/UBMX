@@ -1,15 +1,4 @@
-<!-- <div class="container">
-  <ul class="collection with-header">
-    <li class="collection-header"> Vehicle List </li>
-    <li class="collection-item" ng-repeat="result in dash.results">
-      {{result.brand}} <div class="secondary-content"> {{result.name}} </div>
-    </li>
-  </ul>
-</div>
- -->
- <!-- User dashboard coming up 
- Sam[le template above -->
-  <div>
+  <div  ng-if="account.loggedin">
     <a href="#/booking"><button class="mui-btn mui-btn--raised">Book Now!</button></a>
  <div id="flip-scroll">
 
@@ -36,4 +25,8 @@
         </tbody>
     </table>
 </div>
+</div>
+<div  ng-if="!account.loggedin">
+    {{account.loggedin}}
+ <a href="#/customer"><button class="mui-btn mui-btn--raised">Please Login To Continue!!!</button></a>
 </div>

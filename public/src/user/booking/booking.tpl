@@ -3,6 +3,13 @@
        <div class="mui-panel">        
        <form ng-submit = "book.submit()" name="bookingForm" id="bookingForm" class="horizontal-form">
             <div class="row">
+                <label >Enter the Location:</label>
+                <div class="mui-textfield mui-textfield--float-label">
+                <input  ng-model="book.locations"  ng-change = "book.ven_locations()" type="text"  name="Location"  required></br>
+                </div>
+            </div>
+
+            <div class="row">
                 <label >Select a vehicle</label>
                 <div class="mui-select">
                 <select id="vehicle" ng-model = "book.v_id"  >
@@ -59,7 +66,7 @@
              
            <div class="row">
 <label >Pickup Address:  </label></br>
-                <label >Flat No. : </label>
+                <<!-- label >Flat No. : </label>
                 <div class="mui-textfield mui-textfield--float-label">
                 <input  ng-model="book.da1"  type="text"  name="Drop address line 1"  required></br>
                 </div>
@@ -74,12 +81,15 @@
                 <label >City: </label>
             <div class="mui-textfield mui-textfield--float-label">
                   <input  ng-model="book.da4"  type="text"  name="Drop address line 4"  required></br>
-            </div>    
+            </div> -->
+            
+            <textarea ng-model = "book.paddr" row = "5" column = "40" required></textarea>    
+            
             </div>
 
             <div class="row">
 <label >Drop Address:  </label></br>
-                <label >Flat No. : </label>
+            <!--     <label >Flat No. : </label>
                 <div class="mui-textfield mui-textfield--float-label">
                 <input  ng-model="book.pa1"  type="text"  name="Pickup address line 1"  required></br>
                 </div>
@@ -94,7 +104,8 @@
                 <label >City: </label>
                 <div class="mui-textfield mui-textfield--float-label">
                   <input  ng-model="book.pa4"  type="text"  name="Pickup address line 4"  required></br>
-                </div>    
+                </div>     -->
+                <textarea ng-model = "book.daddr" row = "5" column = "40" required></textarea>    
             </div>
                                       
     

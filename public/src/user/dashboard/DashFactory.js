@@ -9,8 +9,8 @@ Shreyansh Nahata
     angular.module('ubmkuser')
         .factory('Dashboard', function ($http) {
             return {
-              getBookings: function () {
-                return $http.get('/bookings');
+              getBookings: function (uidno) {
+                return $http.get('/bookings/'+uidno);
               }
             }
         })

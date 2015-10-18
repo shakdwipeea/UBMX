@@ -1,8 +1,7 @@
 /*
-Shreyansh Nahata 
+Created By : Shreyansh Nahata 
 
 */
-
 (function () {
     'use strict'
     
@@ -15,16 +14,16 @@ Shreyansh Nahata
               getProblems: function(){
                 return $http.get('/problems');
               },
-              getVendor: function(){ 
-              	return $http.get('/vendors');
+              getVendor: function(locations){ 
+              	return $http.get('/vendors/'+locations);
               },
-              getSlots: function( vendorid ){ 
+              getSlots: function( vendorid,datesel ){ 
                 /*return $http({
                    url: "/slots", 
                    method: "GET",
                    params: {vendor_id: vendorid}
                 });*/
-                return $http.get('/slots/'+vendorid);
+                return $http.get('/slots/'+vendorid+"/"+datesel);
               },
               do_booking: function(data){
                 return $http.post('/bookings', data)
