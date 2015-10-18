@@ -9,19 +9,19 @@
  -->
  <!-- User dashboard coming up 
  Sam[le template above -->
- <div>
-    <a href="#/booking">Book Now!</a>
+  <div>
+    <a href="#/booking"><button class="mui-btn mui-btn--raised">Book Now!</button></a>
  <div id="flip-scroll">
 
-    <table class="table table-bordered table-striped table-condensed cf">
-    	<thead class="cf">
-    		<tr>
-    			<th>Type</th>
-    			<th>Vendor</th>
-    			<th>Problem</th>
-    			<th>Date</th>
-    			<th>Status</th>
-    			<th>Ratings</th>
+    <table class="mui-table" style="margin:15px;">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Vendor</th>
+                <th>Problem</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Ratings</th>
             </tr>
         </thead>
         <tbody id="bookings" ng-repeat = "result in dash.results" >

@@ -37,7 +37,8 @@ Shreyansh Nahata
                         $state.go('dash')
             		}).catch(function(reason){
             			console.log(reason);
-            			self.message = "Their is a problem in booking !!";
+                  self.message = reason.data.error;
+            			/*self.message = "Their is a problem in booking !!";*/
             		})
             };
             
