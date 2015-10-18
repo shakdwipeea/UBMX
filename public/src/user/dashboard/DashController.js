@@ -2,10 +2,10 @@
     'use strict'
 
     angular.module('ubmkuser')
-        .controller('DashController', function ($stateParams, Dashboard) {
+        .controller('DashController', function (Account, $stateParams, Dashboard) {
           var self = this;
-
-          Dashboard.getBookings()
+          var uidno = Account.getUserId();
+          Dashboard.getBookings(uidno)
             .then(function (response) {
               console.log(response);
               self.results = response.data.bookings;

@@ -1,11 +1,10 @@
 /*
-Shreyansh Nahata 
+Created By : Shreyansh Nahata 
 
 */
-
 (function () {
     'use strict'
-
+    
     angular.module('ubmkuser')
         .factory('Booking', function ($http) {
             return {
@@ -15,8 +14,16 @@ Shreyansh Nahata
               getProblems: function(){
                 return $http.get('/problems');
               },
-              getVendor: function( vendor ){ 
-              	return $http.get('/vendors');
+              getVendor: function(locations){ 
+              	return $http.get('/vendors/'+locations);
+              },
+              getSlots: function( vendorid,datesel ){ 
+                /*return $http({
+                   url: "/slots", 
+                   method: "GET",
+                   params: {vendor_id: vendorid}
+                });*/
+                return $http.get('/slots/'+vendorid+"/"+datesel);
               },
               do_booking: function(data){
                 return $http.post('/bookings', data)
@@ -24,6 +31,15 @@ Shreyansh Nahata
                     console.log(response);
                     return response;
                   })
+              },
+             getDates : function (){
+                var itr = moment.twix(moment((moment().date()+1).toString(),"DD"),
+                  moment().add(15, 'days')).iterate("days");
+                var range=[];
+                while(itr.hasNext()){
+                  range.push(itr.next().toString().replace(" 00:00:00 GMT+0530" , ""))
+                }
+                return range;
               },
               getBookingType : function(){
                 return $http.get('/booking_type');

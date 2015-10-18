@@ -23,10 +23,12 @@
     "gulp-uglify": "^1.4.1",
     "jshint-stylish": "^2.0.1",
     "jsonwebtoken": "^5.0.5",
+    "moment": "^2.10.6",
     "morgan": "~1.6.1",
     "mysql": "^2.9.0",
     "node-notifier": "^4.3.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "twix": "^0.7.2"
   },
   "apidoc": {
     "title": "Api documentation for Urban Mechanic"

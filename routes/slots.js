@@ -8,6 +8,7 @@ var async = require('async');
 
 var util = require('../lib/helper');
 
+
 /**
  * @api {get} /slots/vendor_id Get slots available
  * @apiName AddBooking

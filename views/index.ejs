@@ -13,22 +13,32 @@
 
    <!-- Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/assets/js/materialize.js"></script>
+  <script src="/assets/js/materialize.js"></script><!--
+<link rel="stylesheet" href="https://cdn.rawgit.com/alexanderGugel/papier/master/dist/papier.min.css"> -->
+<link href="//cdn.muicss.com/mui-0.2.1/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.2.1/js/mui.min.js"></script>
   
 </head>
 
-<body ng-app ='ubmkuser' ng-controller = 'AccountController as acoount'>
+<body ng-app ='ubmkuser' ng-controller = 'AccountController as account'>
  
-  <nav class="teal" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" ui-sref="account.login" class="brand-logo" >Urban Mechanik</a>
-  
-    <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
+  <header class="mui-appbar mui--z1">
+      <div class="mui-container">
+        <table width="100%">
+          <tr class="mui--appbar-height">
+            <td class="mui--text-title">Urban Mechanik</td>
+            <td align="right">
+              <ul class="mui-list--inline mui--text-body2">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li ng-if="!account.loggedIn"><a href="#/customer/login">Login</a></li>
+                <li ng-if="account.loggedIn"><a ui-sref-active="ak-active-tab" ui-sref="account.logout">Logout</a></li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </header>
 </div>
 <div>
   <!-- <div class="parallax" ><img src="assets/images/bg1.jpg" alt="Unsplashed background img 1"></div> -->
@@ -38,8 +48,6 @@
 
 </div>
 
-    <!-- all -->
-<script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> -->
@@ -54,6 +62,10 @@
 <script type="text/javascript" src = "/src/user/dashboard/DashController.js"></script>
 <script type="text/javascript" src = "/src/user/booking/BookingController.js"></script>
 <!-- Service   -->
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/twix.js/0.6.5/twix.min.js"></script>
+
+
 <script type="text/javascript" src = "/src/user/account/AccountFactory.js"></script>
 <script type="text/javascript" src = "/src/user/dashboard/DashFactory.js"></script>
 <script type="text/javascript" src = "/src/user/booking/BookingFactory.js"></script>

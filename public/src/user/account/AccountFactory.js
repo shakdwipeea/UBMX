@@ -1,3 +1,7 @@
+/*
+Created By : Shreyansh Nahata 
+
+*/
 (function  () {
 	'use strict'
 
@@ -15,7 +19,7 @@
 							console.log(response);
 							token = response.data.token;
 							id = response.data.id;
-							$window.localStorage.setItem('user_id', (id*234) );
+							//$window.localStorage.setItem('user_id', (id*234) );
 							$window.localStorage.setItem('token' , token);
 							return response;
 						})
@@ -27,7 +31,7 @@
 				$window.localStorage.removeItem('user_id');
 			}
 			function isloggedIn(){
-				if(token )
+				if(getToken())
 					return true;
 				else
 					return false;
@@ -37,10 +41,11 @@
 				return $http.get('/users');
 			}
 			function getUserId () {
-				console.log($window.localStorage.getItem('user_id'));
-				return $window.localStorage.getItem('user_id');
+				//console.log($window.localStorage.getItem('user_id')/234);
+				return id;
 			}
 			function getToken () {
+				token = $window.localStorage.getItem('token');
 				return token;
 			}
 
@@ -49,7 +54,8 @@
 				login: login,
 				getUserNames: usernames,
 				getUserId : getUserId,
-				getToken: getToken
+				getToken: getToken,
+				isloggedIn : isloggedIn
 			}
 		});
 })();
