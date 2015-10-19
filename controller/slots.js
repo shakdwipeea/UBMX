@@ -13,7 +13,7 @@ var Slots = {
                 return cb(err, null);
             }
 
-            conn.query('SELECT * FROM slot WHERE vendor_id = ? AND date = ?', vendor_id, slot_day, (err, slots) => {
+            conn.query('SELECT * FROM slot WHERE vendor_id = ? AND date = ?', [vendor_id, slot_day], (err, slots) => {
                 conn.release();
                 return cb(err, slots);
             });
@@ -25,8 +25,8 @@ var Slots = {
            if (err) {
                return cb(err, null);
            }
-           console.log(require('../lib/util'));
-           slot.id = require('../lib/util').random();
+
+            slot.id = require('../lib/helper').random();
            console.log(util.random);
 
             conn.query('INSERT INTO slot SET ?', slot, (err, rows) => {

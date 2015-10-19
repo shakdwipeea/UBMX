@@ -19,8 +19,8 @@ var util = require('../lib/helper');
  */
 router.get('/:vendor_id', (req, res) => {
     var vendor_id = req.params.vendor_id;
-
-    var slot_day = req.body.slot_day;
+    console.log(req.query);
+    var slot_day = req.query.slot_day;
 
     util.getAvailableSlots(vendor_id, slot_day, (err, data) => {
         if (err) {

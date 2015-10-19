@@ -119,7 +119,8 @@ router.post('/', (req, res) => {
                 "error": err
             });
         } else {
-            if (data.times.indexOf(slot) == -1) {
+            console.log(data.times, "k", slot);
+            if (data.times.indexOf(parseInt(slot)) == -1) {
                 res.status(500).json({
                     "error": "Slot not available"
                 });

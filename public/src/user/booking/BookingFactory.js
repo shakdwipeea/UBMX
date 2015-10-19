@@ -23,7 +23,7 @@ Created By : Shreyansh Nahata
                    method: "GET",
                    params: {vendor_id: vendorid}
                 });*/
-                return $http.get('/slots/'+vendorid+"/"+datesel);
+                  return $http.get('/slots/' + vendorid + "/?slot_day=" + datesel);
               },
               do_booking: function(data){
                 return $http.post('/bookings', data)

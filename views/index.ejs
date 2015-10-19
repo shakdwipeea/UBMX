@@ -31,8 +31,9 @@
               <ul class="mui-list--inline mui--text-body2">
                 <li><a href="#">About</a></li>
                 <li><a href="#">Pricing</a></li>
-                <li ng-if="!account.loggedIn"><a href="#/customer/login">Login</a></li>
-                <li ng-if="account.loggedIn"><a ui-sref-active="ak-active-tab" ui-sref="account.logout">Logout</a></li>
+                  <li ng-if="!account.loggedin"><a href="#/customer/login">Login</a></li>
+                  <li ng-if="account.loggedin"><a ui-sref-active="ak-active-tab" ui-sref="account.logout">Logout</a>
+                  </li>
               </ul>
             </td>
           </tr>

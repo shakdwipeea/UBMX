@@ -22,7 +22,7 @@ Created By : Shreyansh Nahata
               console.log(uidno);
               
             	Booking.do_booking({
-                location: self.locations;    
+                    location: self.locations,
                 user_id : uidno,
                 type_id : self.t_id,
                 vendor_id :self.ven_id,
