@@ -176,4 +176,25 @@ router.post('/', (req, res) => {
 
 });
 
+router.post('/status', (req, res) => {
+    if (req.body.user.user == 'vendor' || req.body.user.user == "admin") {
+        console.log(req.body);
+        bookings.changeStatusOfBooking(req.body, (err) => {
+            if (err) {
+                res.status(500).json({
+                    "error": err
+                });
+            } else {
+                res.json({
+                    "message": "Done"
+                });
+            }
+        })
+    } else {
+        res.status(403).json({
+            "error": "Not authorized"
+        })
+    }
+});
+
 module.exports = router;
