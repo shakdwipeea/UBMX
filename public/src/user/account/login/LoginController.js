@@ -17,7 +17,7 @@ Shreyansh Nahata
                     $state.go('dash');
                 }).catch(function (reason) {
                     console.log(reason);
-                    self.Message = "Incorrect Username or Password";
+                    self.Message = reason;
                 })
             }
         });

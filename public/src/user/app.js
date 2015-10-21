@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('ubmkuser', ['ui.router', 'toaster', 'ngAnimate'])
+    angular.module('ubmkuser', ['ui.router', 'toaster', 'ngAnimate','scDateTime'])
         .config(function ($stateProvider, $urlRouterProvider) {
             
             $urlRouterProvider.otherwise('/customer');
@@ -42,8 +42,13 @@
                     templateUrl: dir + 'booking/booking.tpl' ,
                     controller : 'BookingController as book'
                 })
+
+                .state('booking.login', {
+                    url: '/login',
+                    templateUrl: dir + 'account/login/login.tpl',
+                    controller: 'LoginController as login'
+                })
             ;
         });
 
 })();
-

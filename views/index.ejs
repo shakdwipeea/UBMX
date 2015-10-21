@@ -7,20 +7,24 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet"/>
 <!--     <link rel="stylesheet" href="app/assets/style.css">
  -->
 
    <!-- Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/assets/js/materialize.js"></script><!--
+
+  <link rel='stylesheet' href='/assets/dist/sc-date-time.css'>
+  <script src="/assets/js/geoloc.js"></script><!--
 <link rel="stylesheet" href="https://cdn.rawgit.com/alexanderGugel/papier/master/dist/papier.min.css"> -->
 <link href="//cdn.muicss.com/mui-0.2.1/css/mui.min.css" rel="stylesheet" type="text/css" />
+
     <script src="//cdn.muicss.com/mui-0.2.1/js/mui.min.js"></script>
   
 </head>
 
-<body ng-app ='ubmkuser' ng-controller = 'AccountController as account'>
+<body ng-app ='ubmkuser' ng-controller = 'AccountController as account' style="background: fixed center url('https://static.pexels.com/photos/1240/road-street-blur-blurred.jpg');">
  
   <header class="mui-appbar mui--z1">
       <div class="mui-container">
@@ -29,11 +33,11 @@
             <td class="mui--text-title">Urban Mechanik</td>
             <td align="right">
               <ul class="mui-list--inline mui--text-body2">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Pricing</a></li>
-                  <li ng-if="!account.loggedin"><a href="#/customer/login">Login</a></li>
-                  <li ng-if="account.loggedin"><a ui-sref-active="ak-active-tab" ui-sref="account.logout">Logout</a>
-                  </li>
+                <li><a href="#"><font color="white">About</font></a></li>
+                <li><a href="#"><font color="white">Pricing</font></a></li>
+                <li ng-if="!account.loggedin"><a href="#/customer/login"><font color="white">Login</font></a></li>
+                <li  ng-if="account.loggedin"><a ng-click="account.logout()" ui-sref-active="ak-active-tab" ui-sref="account"><font color="white">Logout</font></a></li>
+
               </ul>
             </td>
           </tr>
@@ -50,9 +54,15 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
+
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+  <script src="http://momentjs.com/downloads/moment.js"></script>
+  <script src="/assets/dist/sc-date-time.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.js"></script>
 <!-- App   -->
 <script type="text/javascript" src = "/src/user/app.js"></script>
