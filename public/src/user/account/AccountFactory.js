@@ -6,6 +6,7 @@ Created By : Shreyansh Nahata
 	'use strict'
 
 	angular.module('ubmkuser')
+
 		.factory('Account', function  ($http, $window) {
 			var token = null;
 			var id = null;
@@ -19,19 +20,17 @@ Created By : Shreyansh Nahata
 							console.log(response);
 							token = response.data.token;
 							id = response.data.id;
-							//$window.localStorage.setItem('user_id', (id*234) );
 							$window.localStorage.setItem('token' , token);
+							$window.localStorage.setItem('user_id' , id);
 							return response;
 						})
 			}
 			function logout(){
-				token = null;
-				id = null;
-				$window.localStorage.removeItem('token');
-				$window.localStorage.removeItem('user_id');
+				return $window.localStorage.clear();
+
 			}
 			function isloggedIn(){
-				if(getToken())
+				if(getToken() && getUserId())
 					return true;
 				else
 					return false;
@@ -41,7 +40,7 @@ Created By : Shreyansh Nahata
 				return $http.get('/users');
 			}
 			function getUserId () {
-				//console.log($window.localStorage.getItem('user_id')/234);
+				id = $window.localStorage.getItem('user_id');
 				return id;
 			}
 			function getToken () {
@@ -55,7 +54,10 @@ Created By : Shreyansh Nahata
 				getUserNames: usernames,
 				getUserId : getUserId,
 				getToken: getToken,
-				isloggedIn : isloggedIn
+				isloggedIn : isloggedIn,
+				logout : logout
 			}
 		});
+
+	
 })();

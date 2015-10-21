@@ -1,4 +1,4 @@
-
+<div ng-controller="AccountController as account">
   <div style="margin:5%;"  ng-if="account.loggedin">
     <a href="#/booking"><button class="mui-btn mui-btn--raised">Book Now!</button></a>
  <div id="flip-scroll" class="mui-panel">
@@ -30,4 +30,5 @@
 <div  ng-if="!account.loggedin">
     {{account.loggedin}}
  <a href="#/customer"><button class="mui-btn mui-btn--raised">Please Login To Continue!!!</button></a>
+</div>
 </div>

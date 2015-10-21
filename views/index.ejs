@@ -36,7 +36,8 @@
                 <li><a href="#"><font color="white">About</font></a></li>
                 <li><a href="#"><font color="white">Pricing</font></a></li>
                 <li ng-if="!account.loggedin"><a href="#/customer/login"><font color="white">Login</font></a></li>
-                <li ng-if="account.loggedin"><a ui-sref-active="ak-active-tab" ui-sref="account.logout"><font color="white">Logout</font></a></li>
+                <li  ng-if="account.loggedin"><a ng-click="account.logout()" ui-sref-active="ak-active-tab" ui-sref="account"><font color="white">Logout</font></a></li>
+
               </ul>
             </td>
           </tr>

@@ -12,17 +12,17 @@ Created By : Shreyansh Nahata
             var self = this;
             self.message="";
             self.slot = 11; /*default slot value*/
-            
+            self.first_true = true;
+            self.second_true = true;
             self.location = "";
             self.submit = function () {
 
               var uidno = Account.getUserId();
-              /*var paddr = self.pa1 + self.pa2 + self.pa3 + self.pa4;
-              var daddr = self.da1 + self.da2 + self.da3 + self.da4;*/
+              self.userid = uidno;
               console.log(uidno);
               
-            	Booking.do_booking({
-                    location: self.locations,
+              Booking.do_booking({
+                location: self.locations,    
                 user_id : uidno,
                 type_id : self.t_id,
                 vendor_id :self.ven_id,
@@ -35,12 +35,13 @@ Created By : Shreyansh Nahata
 
                 }).then(function(){
                         $state.go('dash')
-            		}).catch(function(reason){
-            			console.log(reason);
+                }).catch(function(reason){
+                  console.log(reason);
                   self.message = reason.data.error;
-            			/*self.message = "Their is a problem in booking !!";*/
-            		})
+                  /*self.message = "Their is a problem in booking !!";*/
+                })
             };
+            
             self.ven_locations = function(){
               console.log('location');
 
@@ -64,6 +65,11 @@ Created By : Shreyansh Nahata
                     console.log(reason);
                   })
               
+            }
+            
+            self.seconditer = function(){
+              console.log(seconditer);
+              self.second_true = false;
             }
 
             console.log("Booking");

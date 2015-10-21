@@ -15,11 +15,26 @@
                 <label >Select a vehicle</label>
                 <div class="mui-select">
                 <select id="vehicle" ng-model = "book.v_id"  >
-                    <option value="" disabled selected>Choose your option</option>
-                     <option ng-repeat="result in book.vehicles" value="{{ result.id }}">{{result.brand}}-{{result.name}}</option>
+                <option value="" disabled selected>Choose your option</option>
+                <option ng-repeat="result in book.vehicles" value="{{ result.id }}">{{result.brand}}-{{result.name}}
+                </option>
                </select>
             </div>
             </div>
+
+            <div class="row">
+                <label >Enter the Location:</label>&nbsp;
+                <button ng-model="book.locations"  ng-change = "book.ven_locations()"  class="mui-btn mui-btn--raised" onclick="getLocation1()">
+                    <i style="margin-top:25%;" class="material-icons">location_on</i>
+                </button>
+                <div class="mui-textfield mui-textfield--float-label">
+                <input  ng-model="book.locations"  ng-change = "book.ven_locations()"  type="text"  name="Location" >
+            </br>
+                </div>
+            </div>
+
+
+<div   ng-hide="book.first_true" class="ng-hide">
             <div class="row">
                 
                 <label >Select a vendor:</label>
@@ -28,6 +43,7 @@
                 </select>
             </div>
             </div>
+</div>
             <div class="row">
                 <label >Select a Problem type</label>
                     <div class="mui-select">
@@ -88,6 +104,11 @@
 
 {{ book .message }} 
     </div>
+<<<<<<< HEAD
+    </div>
+     
+=======
+>>>>>>> 9b7dbdab2e6035953967130261127ae2932b4557
     </div>
      
     </div>

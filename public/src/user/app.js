@@ -42,6 +42,12 @@
                     templateUrl: dir + 'booking/booking.tpl' ,
                     controller : 'BookingController as book'
                 })
+
+                .state('booking.login', {
+                    url: '/login',
+                    templateUrl: dir + 'account/login/login.tpl',
+                    controller: 'LoginController as login'
+                })
             ;
         });
 
