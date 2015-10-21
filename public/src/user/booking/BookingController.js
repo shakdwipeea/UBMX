@@ -17,7 +17,8 @@ Created By : Shreyansh Nahata
             self.location = "";
             self.latit = null;
             self.longi = null;
-            
+            self.vendor_value = true;
+            self.remaining_body = true;
             self.submit = function () {
 
               var uidno = Account.getUserId();
@@ -46,7 +47,7 @@ Created By : Shreyansh Nahata
             
             self.ven_locations = function(){
               console.log('location');
-
+              self.vendor_value = false;
               Booking.getVendor(self.locations)
               .then(function(response){
                 console.log(response);
@@ -58,6 +59,7 @@ Created By : Shreyansh Nahata
 
              self.ven_lat_long = function(){
               console.log('lat_long');
+              self.vendor_value = false;
               self.latit = $window.localStorage.getItem('lat_pickup').toString();
               self.longi = $window.localStorage.getItem('lon_pickup').toString();
               Booking.getVendor_lat_long(self.latit,self.longi)
@@ -70,7 +72,7 @@ Created By : Shreyansh Nahata
             }
             self.slotsmatter = function(){
               console.log("slotsmatter");
-                
+                self.remaining_body = false;    
                 Booking.getSlots(self.ven_id, self.date)
                   .then(function(response){
                      console.log(response);
@@ -82,11 +84,6 @@ Created By : Shreyansh Nahata
               
             }
             
-            self.seconditer = function(){
-              console.log(seconditer);
-              self.second_true = false;
-            }
-
             console.log("Booking");
             
             Booking.getVehicles()

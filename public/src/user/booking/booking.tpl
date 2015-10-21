@@ -23,7 +23,7 @@
             </div>
 
 
-        <div>
+        <div ng-hide = "book.vendor_value">
             <div class="row">
                 
                 <label >Select a vendor:</label>
@@ -34,6 +34,7 @@
             </div>
             </div>
         </div>
+        <div ng-hide = "book.remaining_body">
             <div class="row">
                 <label >Select a Problem type</label>
                     <div class="mui-select">
@@ -83,7 +84,7 @@
                 </br>
                 <textarea ng-model = "book.daddr" row = "5" column = "40" required></textarea>    
             </div>
-                                      
+        </div>                                   
     
             <div class=" col s12">
                <button class="mui-btn mui-btn--primary" type="submit" name="action">Book Now
