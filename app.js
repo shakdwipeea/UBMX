@@ -42,8 +42,16 @@ app.use('/users', users);
 app.use('/admin', admin);
 
 app.use((req, res, next) => {
-  if(req.body.token) {
-    jwt.verify(req.body.token, app.get('secret'), (err, decoded) => {
+
+  var token;
+  if (req.body.token) {
+    token = req.body.token;
+  } else if (req.query.token) {
+    token = req.query.token;
+  }
+
+  if (token) {
+    jwt.verify(token, app.get('secret'), (err, decoded) => {
       if (err) {
         next(err);
       } else {

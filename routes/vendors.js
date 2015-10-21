@@ -147,6 +147,7 @@ router.post('/login', (req, res) => {
       var token = jwt.sign({
         email: vendorProfile.email,
         password: vendorProfile.password,
+          id: vendorProfile.id,
         user: 'vendor'
       }, config.jwt.secret);
 
