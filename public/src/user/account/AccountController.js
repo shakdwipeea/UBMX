@@ -11,14 +11,14 @@ Created By : Shreyansh Nahata
 			
 			self.loggedin = Account.isloggedIn();
 			console.log(Account.isloggedIn());
-			
+
 			self.logout = function(){
 				Account.logout()
-				.then(function(response){
-					$state.go('main')
+				/*.then(function(response){
+					$state.go('account')
 				}).catch(function(reason){
 					console.log(reason);
-				})
+				})*/
 			};
 		});
 })();

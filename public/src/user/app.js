@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('ubmkuser', ['ui.router', 'toaster', 'ngAnimate'])
+    angular.module('ubmkuser', ['ui.router', 'toaster', 'ngAnimate','scDateTime'])
         .config(function ($stateProvider, $urlRouterProvider) {
             
             $urlRouterProvider.otherwise('/customer');
@@ -46,4 +46,3 @@
         });
 
 })();
-

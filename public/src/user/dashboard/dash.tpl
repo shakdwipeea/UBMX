@@ -1,6 +1,7 @@
-  <div  ng-if="account.loggedin">
+
+  <div style="margin:5%;"  ng-if="account.loggedin">
     <a href="#/booking"><button class="mui-btn mui-btn--raised">Book Now!</button></a>
- <div id="flip-scroll">
+ <div id="flip-scroll" class="mui-panel">
 
     <table class="mui-table" style="margin:15px;">
         <thead>
