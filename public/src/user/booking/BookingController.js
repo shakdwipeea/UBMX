@@ -15,6 +15,9 @@ Created By : Shreyansh Nahata
             self.first_true = true;
             self.second_true = true;
             self.location = "";
+            self.latit = null;
+            self.longi = null;
+            
             self.submit = function () {
 
               var uidno = Account.getUserId();
@@ -22,7 +25,6 @@ Created By : Shreyansh Nahata
               console.log(uidno);
               
               Booking.do_booking({
-                location: self.locations,    
                 user_id : uidno,
                 type_id : self.t_id,
                 vendor_id :self.ven_id,
@@ -46,6 +48,19 @@ Created By : Shreyansh Nahata
               console.log('location');
 
               Booking.getVendor(self.locations)
+              .then(function(response){
+                console.log(response);
+                self.vendors = response.data.vendors;
+              }).catch(function(reason){
+                console.log(reason);
+              })
+            }
+
+             self.ven_lat_long = function(){
+              console.log('lat_long');
+              self.latit = $window.localStorage.getItem('lat_pickup').toString();
+              self.longi = $window.localStorage.getItem('lon_pickup').toString();
+              Booking.getVendor_lat_long(self.latit,self.longi)
               .then(function(response){
                 console.log(response);
                 self.vendors = response.data.vendors;
