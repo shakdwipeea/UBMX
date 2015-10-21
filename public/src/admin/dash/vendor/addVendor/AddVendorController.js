@@ -18,7 +18,10 @@ angular.module('ubmk')
                 password: self.vendor.password,
                 email: self.vendor.email,
                 capacity_per_slot: self.vendor.capacity_per_slot,
-                timings: self.vendor.timings
+                timings: self.vendor.timings,
+                location: self.vendor.location,
+                lat: self.vendor.lat,
+                lng: self.vendor.lng
             };
 
             vendorDetails.problem_ids = Object.keys(self.vendor.problems)

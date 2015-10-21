@@ -4,7 +4,8 @@ var router = express.Router();
 var jwt = require('jsonwebtoken'),
     vendor = require('../controller/vendors'),
     config = require('../config'),
-    async = require('async');
+    async = require('async'),
+    vincenty = require('node-vincenty');
 
 
 /**
@@ -36,6 +37,7 @@ router.get('/', (req, res) => {
     });
 });
 
+
 router.get('/:location', (req, res) => {
     vendor.getByLocation(req.params.location, (err, rows) => {
         if (err) {
@@ -45,6 +47,26 @@ router.get('/:location', (req, res) => {
         } else {
             res.json({
                 "vendors": rows
+            });
+        }
+    });
+});
+
+
+router.get('/lat_lng', (req, res) => {
+    var lat = req.query.lat,
+        lng = req.query.lng;
+
+    vendor.getAllVendors((err, vendors) => {
+        if (err) {
+            res.status(500).json({
+                "error": err
+            });
+        } else {
+            vendors = vendors.filter((vendor) => vincenty.distVincenty(lat, lng, vendor.lat, vendor.lng) < 3000);
+
+            res.json({
+                "vendors": vendors
             });
         }
     });
@@ -78,7 +100,10 @@ router.get('/:location', (req, res) => {
              capacity_per_slot: req.body.capacity_per_slot,
              timings: req.body.timings,
              email: req.body.email,
-             password: req.body.password
+             password: req.body.password,
+             location: req.body.location,
+             lat: req.body.lat,
+             lng: req.body.lng
          }, (err, newVendor) => {
              if (err) {
                  res.status(500).json({

@@ -27,6 +27,7 @@
     "morgan": "~1.6.1",
     "mysql": "^2.9.0",
     "node-notifier": "^4.3.1",
+    "node-vincenty": "0.0.6",
     "serve-favicon": "~2.3.0",
     "twix": "^0.7.2"
   },
