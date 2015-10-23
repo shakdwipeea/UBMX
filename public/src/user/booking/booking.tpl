@@ -3,7 +3,15 @@
        <div class="mui-panel">        
        <form ng-submit = "book.submit()" name="bookingForm" id="bookingForm" class="horizontal-form">
         <div style="margin:5%;">
-
+            <div class="row">
+                <label >Select a Problem type</label>
+                    <div class="mui-select">
+                <select ng-model = "book.t_id"  class = "ui dropdown" required>
+                    <option value="" disabled selected>Choose your option</option>
+                    <option ng-repeat="result in book.b_types" value="{{ result.id }}">{{result.name}}</option>
+                </select>
+            </div>
+            </div>
             <div class="row">
                 <label >Enter the Location:</label>&nbsp;<button ng-model="book.locations" class="mui-btn mui-btn--raised" onclick="getLocation1()"  ng-click = "book.ven_lat_long()"><i style="margin-top:25%;" class="material-icons">location_on</i></button>
                 <div class="mui-textfield mui-textfield--float-label">
@@ -34,16 +42,7 @@
             </div>
             </div>
         </div>
-        <div ng-hide = "book.remaining_body">
-            <div class="row">
-                <label >Select a Problem type</label>
-                    <div class="mui-select">
-                <select ng-model = "book.t_id"  class = "ui dropdown" required>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option ng-repeat="result in book.b_types" value="{{ result.id }}">{{result.name}}</option>
-                </select>
-            </div>
-            </div>
+        <div ng-hide = "book.problem_specific">
             <div class="row">
                 <label >Select Problem :</label>
                     <div class="mui-select">
@@ -53,6 +52,8 @@
                 </select>
             </div>
             </div>
+        </div>
+        <div ng-hide = "book.remaining_body">
             <div class="row">
                 <label >Select a date: </label>
                     <div class="mui-select">             

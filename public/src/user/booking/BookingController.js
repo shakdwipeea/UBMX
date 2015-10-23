@@ -19,6 +19,9 @@ Created By : Shreyansh Nahata
             self.longi = null;
             self.vendor_value = true;
             self.remaining_body = true;
+            self.t_id = 0;                  /*Used type_id = 0 for general services and type_id = 1 for problem_specific services*/
+            self.problem_specific = true;
+
             self.submit = function () {
 
               var uidno = Account.getUserId();
@@ -47,6 +50,9 @@ Created By : Shreyansh Nahata
             
             self.ven_locations = function(){
               console.log('location');
+              if(self.t_id == 1){
+                self.problem_specific = false;
+              }
               self.vendor_value = false;
               Booking.getVendor(self.locations)
               .then(function(response){
@@ -72,6 +78,7 @@ Created By : Shreyansh Nahata
             }
             self.slotsmatter = function(){
               console.log("slotsmatter");
+                self.problem_specific = false;
                 self.remaining_body = false;    
                 Booking.getSlots(self.ven_id, self.date)
                   .then(function(response){
