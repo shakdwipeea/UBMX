@@ -18,7 +18,12 @@ Created By : Shreyansh Nahata
               	return $http.get('/vendors/'+locations);
               },
               getVendor_lat_long: function(lat, lon){ 
-                return $http.get("/vendors/lat_lng/?lat="+lat+"/?lng="+lon);
+                return $http({
+                   url: "/vendors/lat_lng", 
+                   method: "GET",
+                   params: {lat: lat, lng : lon}
+                });
+ /*               return $http.get("/vendors/lat_lng/?lat="+lat+"/?lng="+lon);*/
               },
               getSlots: function( vendorid,datesel ){ 
                 /*return $http({

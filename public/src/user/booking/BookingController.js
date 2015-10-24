@@ -12,11 +12,12 @@ Created By : Shreyansh Nahata
             var self = this;
             self.message="";
             self.slot = 11; /*default slot value*/
-            self.first_true = true;
-            self.second_true = true;
             self.location = "";
             self.latit = null;
             self.longi = null;
+            self.vendor_value = false;
+            self.remaining_body = false;
+            self.problem_specific = false;
             self.vendor_value = true;
             self.remaining_body = true;
             self.t_id = 0;                  /*Used type_id = 0 for general services and type_id = 1 for problem_specific services*/
