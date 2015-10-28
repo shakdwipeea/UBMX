@@ -3,6 +3,7 @@
        <div class="mui-panel">        
        <form ng-submit = "book.submit()" name="bookingForm" id="bookingForm" class="horizontal-form">
         <div style="margin:5%;">
+        <div ng-hide = "book.first_sub">
             <div class="row">
                 <label >Select a Problem type</label>
                     <div class="mui-select">
@@ -18,7 +19,6 @@
                 <input  ng-model="book.locations"  ng-change = "book.ven_locations()" type="text"  name="Location"  ></br>
                 </div>
             </div>
-
             <div class="row">
                 <label >Select a vehicle</label>
                 <div class="mui-select">
@@ -28,10 +28,19 @@
                 </option>
                </select>
             </div>
+          <div class=" col s12">
+               <button class="mui-btn mui-btn--primary" type="submit" name="action" ng-click = "book.second_go()" >Next>>
+                <i class="material-icons">send</i>
+                </button>&nbsp; &nbsp;
+           </div>
             </div>
-
-
+        </div>
         <div ng-hide = "book.vendor_value">
+               <div class=" col s12">
+               <button class="mui-btn mui-btn--primary" type="submit" name="action" ng-click = "book.first_fr()" >Previous Menu
+                <i class="material-icons">send</i>
+                </button>&nbsp; &nbsp;
+           </div>
             <div class="row">
                 
                 <label >Select a vendor:</label>
@@ -41,7 +50,13 @@
                 </select>
             </div>
             </div>
+          <div class=" col s12">
+               <button class="mui-btn mui-btn--primary" type="submit" name="action" ng-click = "book.third_go()" >Next>>
+                <i class="material-icons">send</i>
+                </button>&nbsp; &nbsp;
+           </div>
         </div>
+
         <div ng-hide = "book.problem_specific">
             <div class="row">
                 <label >Select Problem :</label>
@@ -54,6 +69,11 @@
             </div>
         </div>
         <div ng-hide = "book.remaining_body">
+            <div class=" col s12">
+               <button class="mui-btn mui-btn--primary" type="submit" name="action" ng-click = "book.second_go()" >Previous Menu
+                <i class="material-icons">send</i>
+                </button>&nbsp; &nbsp;
+           </div>
             <div class="row">
                 <label >Select a date: </label>
                     <div class="mui-select">             
@@ -85,7 +105,7 @@
                 </br>
                 <textarea ng-model = "book.daddr" row = "5" column = "40" required></textarea>    
             </div>
-        </div>                                   
+                                  
     
             <div class=" col s12">
                <button class="mui-btn mui-btn--primary" type="submit" name="action">Book Now
@@ -93,6 +113,7 @@
                 </button>&nbsp; &nbsp;
                 <a href="#/dashboard"><button class="mui-btn mui-btn--danger">Back</button></a>
            </div>
+        </div> 
         </div>
        </form>
 {{ book .message }} 

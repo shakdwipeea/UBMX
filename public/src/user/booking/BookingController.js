@@ -15,6 +15,7 @@ Created By : Shreyansh Nahata
             self.location = "";
             self.latit = null;
             self.longi = null;
+            self.first_sub = false;
             self.vendor_value = false;
             self.remaining_body = false;
             self.problem_specific = false;
@@ -48,6 +49,23 @@ Created By : Shreyansh Nahata
                   /*self.message = "Their is a problem in booking !!";*/
                 })
             };
+            self.second_go = function(){
+              self.vendor_value = false;
+              self.first_sub = true;
+              self.remaining_body = true;
+            };
+            
+            self.first_fr = function(){
+              self.vendor_value = true;
+              self.first_sub = false;
+              self.remaining_body = true;
+            };
+            
+            self.third_go = function(){
+              self.vendor_value = true;
+              self.first_sub = true;
+              self.remaining_body = false;
+            };
             
             self.ven_locations = function(){
               console.log('location');
@@ -62,7 +80,7 @@ Created By : Shreyansh Nahata
               }).catch(function(reason){
                 console.log(reason);
               })
-            }
+            } 
 
              self.ven_lat_long = function(){
               console.log('lat_long');
