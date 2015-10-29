@@ -12,17 +12,23 @@ Created By : Shreyansh Nahata
             var self = this;
             self.message="";
             self.slot = 11; /*default slot value*/
-            
+            self.first_true = true;
+            self.second_true = true;
             self.location = "";
+            self.latit = null;
+            self.longi = null;
+            self.vendor_value = true;
+            self.remaining_body = true;
+            self.t_id = 0;                  /*Used type_id = 0 for general services and type_id = 1 for problem_specific services*/
+            self.problem_specific = true;
+
             self.submit = function () {
 
               var uidno = Account.getUserId();
-              /*var paddr = self.pa1 + self.pa2 + self.pa3 + self.pa4;
-              var daddr = self.da1 + self.da2 + self.da3 + self.da4;*/
+              self.userid = uidno;
               console.log(uidno);
               
-            	Booking.do_booking({
-                location: self.locations;    
+              Booking.do_booking({
                 user_id : uidno,
                 type_id : self.t_id,
                 vendor_id :self.ven_id,
@@ -35,16 +41,34 @@ Created By : Shreyansh Nahata
 
                 }).then(function(){
                         $state.go('dash')
-            		}).catch(function(reason){
-            			console.log(reason);
+                }).catch(function(reason){
+                  console.log(reason);
                   self.message = reason.data.error;
-            			/*self.message = "Their is a problem in booking !!";*/
-            		})
+                  /*self.message = "Their is a problem in booking !!";*/
+                })
             };
+            
             self.ven_locations = function(){
               console.log('location');
-
+              if(self.t_id == 1){
+                self.problem_specific = false;
+              }
+              self.vendor_value = false;
               Booking.getVendor(self.locations)
+              .then(function(response){
+                console.log(response);
+                self.vendors = response.data.vendors;
+              }).catch(function(reason){
+                console.log(reason);
+              })
+            }
+
+             self.ven_lat_long = function(){
+              console.log('lat_long');
+              self.vendor_value = false;
+              self.latit = $window.localStorage.getItem('lat_pickup').toString();
+              self.longi = $window.localStorage.getItem('lon_pickup').toString();
+              Booking.getVendor_lat_long(self.latit,self.longi)
               .then(function(response){
                 console.log(response);
                 self.vendors = response.data.vendors;
@@ -54,7 +78,8 @@ Created By : Shreyansh Nahata
             }
             self.slotsmatter = function(){
               console.log("slotsmatter");
-                
+                self.problem_specific = false;
+                self.remaining_body = false;    
                 Booking.getSlots(self.ven_id, self.date)
                   .then(function(response){
                      console.log(response);
@@ -65,7 +90,7 @@ Created By : Shreyansh Nahata
                   })
               
             }
-
+            
             console.log("Booking");
             
             Booking.getVehicles()

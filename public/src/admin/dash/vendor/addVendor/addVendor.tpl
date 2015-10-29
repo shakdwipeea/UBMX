@@ -17,6 +17,26 @@
                    name="capacity_per_slot"
                    ng-model="addVendor.vendor.capacity_per_slot">
         </div>
+
+        <div class="form-group">
+            <input placeholder="Location(in words) " class="form-control" id="location" required
+                   name="location"
+                   ng-model="addVendor.vendor.location">
+        </div>
+
+
+        <div class="form-group">
+            <input placeholder="latitude " class="form-control" id="lat" required
+                   name="lat"
+                   ng-model="addVendor.vendor.lat">
+        </div>
+
+        <div class="form-group">
+            <input placeholder="longitude " class="form-control" id="lng" required
+                   name="lng"
+                   ng-model="addVendor.vendor.lng">
+        </div>
+
         <div class="form-group">
             <input type="password" placeholder="password " class="form-control" id="password" required name="password"
                    ng-model="addVendor.vendor.password">

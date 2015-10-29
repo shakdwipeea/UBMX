@@ -58,7 +58,7 @@ var Vendor = {
              * todo get vendor's type of work
              */
 
-            conn.query(`SELECT v.id, v.name, v.capacity_per_slot, v.timings, v.email FROM vendor as v`,
+            conn.query(`SELECT v.id, v.name, v.capacity_per_slot, v.timings, v.email, v.lat, v.lng FROM vendor as v`,
                 (err, rows) => {
                     conn.release();
                     cb(err, rows);

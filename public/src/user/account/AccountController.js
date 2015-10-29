@@ -6,19 +6,15 @@ Created By : Shreyansh Nahata
 	'use strict'
 
 	angular.module('ubmkuser')
-		.controller('AccountController', function  ( Account, $state ) {
+		.controller('AccountController', function  ( Account, $state, $window ) {
 			var self = this;
 			
 			self.loggedin = Account.isloggedIn();
 			console.log(Account.isloggedIn());
-			
+
 			self.logout = function(){
-				Account.logout()
-				.then(function(response){
-					$state.go('main')
-				}).catch(function(reason){
-					console.log(reason);
-				})
+				//self.loggedin = false;
+				Account.logout();
 			};
 		});
 })();

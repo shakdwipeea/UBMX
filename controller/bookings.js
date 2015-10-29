@@ -90,6 +90,21 @@ var Bookings = {
                 cb(err, booking);
             });
         })
+    },
+
+    changeStatusOfBooking (booking, cb) {
+        pool.getConnection((err, conn) => {
+            if (err) {
+                return cb(err);
+            }
+
+            conn.query('UPDATE booking SET ? WHERE id = ?', [{
+                status: booking.status
+            }, booking.id], (err, rows) => {
+                conn.release();
+                cb(err);
+            });
+        });
     }
 };
 

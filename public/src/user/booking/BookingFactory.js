@@ -17,13 +17,16 @@ Created By : Shreyansh Nahata
               getVendor: function(locations){ 
               	return $http.get('/vendors/'+locations);
               },
+              getVendor_lat_long: function(lat, lon){ 
+                return $http.get("/vendors/lat_lng/?lat="+lat+"/?lng="+lon);
+              },
               getSlots: function( vendorid,datesel ){ 
                 /*return $http({
                    url: "/slots", 
                    method: "GET",
                    params: {vendor_id: vendorid}
                 });*/
-                return $http.get('/slots/'+vendorid+"/"+datesel);
+                return $http.get('/slots/'+vendorid+"/?slot_day="+datesel);
               },
               do_booking: function(data){
                 return $http.post('/bookings', data)

@@ -30,19 +30,42 @@ router.get('/', (req, res) => {
     /**
      * todo proper access rights
      */
+    console.log(req.query);
+    if (req.body.user.user == "admin") {
+        bookings.getBookings((err, bookings) => {
+            if (err) {
+                res.status(500).json({
+                    "error": err
+                });
+                return;
+            }
 
-    bookings.getBookings((err, bookings) => {
-        if (err) {
-            res.status(500).json({
-                "error": err
+            res.json({
+                "bookings": bookings
             });
-            return;
-        }
-
-        res.json({
-            "bookings": bookings
         });
-    });
+    } else if (req.body.user.user == "vendor") {
+        var vendor_id = req.body.user.id;
+        console.log("On Vendor");
+        bookings.getBookingByVendor(vendor_id, (err, rows) => {
+            if (err) {
+                res.status(500).json({
+                    "error": err
+                })
+            } else {
+                res.json({
+                    "bookings": rows
+                })
+            }
+        })
+    } else {
+        console.log("Booking ");
+        res.status(403).json({
+            "error": "Not authorized"
+        })
+    }
+
+
 });
 
 
@@ -61,7 +84,7 @@ router.get('/:user_id', (req, res) => {
 });
 
 router.get('/:vendorId', (req, res) => {
-    if (true) {
+    if (req.user.user == "admin" || req.user.user == "vendor") {
         bookings.getBookingByVendor(req.params.vendorId, (err, rows) => {
             if (err) {
                 res.status(500).json({
@@ -110,7 +133,7 @@ router.post('/', (req, res) => {
         status: "Pending"
     };
 
-    var slot = req.body.slot;
+    var slot = parseInt(req.body.slot);
     var date = req.body.date;
 
     utils.getAvailableSlots(booking.vendor_id, date, (err, data) => {
@@ -119,7 +142,8 @@ router.post('/', (req, res) => {
                 "error": err
             });
         } else {
-            if (data.times.indexOf(slot) == -1) {
+            console.log(data.times, "k", slot);
+            if (data.times.indexOf(parseInt(slot)) == -1) {
                 res.status(500).json({
                     "error": "Slot not available"
                 });
@@ -173,6 +197,27 @@ router.post('/', (req, res) => {
     });
 
 
+});
+
+router.post('/status', (req, res) => {
+    if (req.body.user.user == 'vendor' || req.body.user.user == "admin") {
+        console.log(req.body);
+        bookings.changeStatusOfBooking(req.body, (err) => {
+            if (err) {
+                res.status(500).json({
+                    "error": err
+                });
+            } else {
+                res.json({
+                    "message": "Done"
+                });
+            }
+        })
+    } else {
+        res.status(403).json({
+            "error": "Not authorized"
+        })
+    }
 });
 
 module.exports = router;
