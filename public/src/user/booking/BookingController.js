@@ -35,8 +35,8 @@ Created By : Shreyansh Nahata
                 type_id : self.t_id,
                 vendor_id :self.ven_id,
                 problem_id : self.p_id,
-                pickup_addr : self.paddr,
-                drop_addr : self.daddr,     /*ToDo implement change of address thing in v 2*/
+                pickup_add : self.paddr,
+                drop_add : self.daddr,     /*ToDo implement change of address thing in v 2*/
                 vehicle_id : self.v_id,      /*vehicle_id to be added*/
                 slot : self.slot,
                 date : self.date
@@ -72,7 +72,7 @@ Created By : Shreyansh Nahata
               if(self.t_id == 1){
                 self.problem_specific = false;
               }
-              self.vendor_value = false;
+              /*self.vendor_value = false;*/
               Booking.getVendor(self.locations)
               .then(function(response){
                 console.log(response);
@@ -84,7 +84,7 @@ Created By : Shreyansh Nahata
 
              self.ven_lat_long = function(){
               console.log('lat_long');
-              self.vendor_value = false;
+              /*self.vendor_value = false;*/
               self.latit = $window.localStorage.getItem('lat_pickup').toString();
               self.longi = $window.localStorage.getItem('lon_pickup').toString();
               Booking.getVendor_lat_long(self.latit,self.longi)
