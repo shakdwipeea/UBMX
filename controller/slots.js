@@ -50,7 +50,7 @@ var Slots = {
                 } , originalSlot.id],
                 (err, rows) => {
                 conn.release();
-                    cb(err, slot);
+                    cb(err, originalSlot);
             });
         });
     }

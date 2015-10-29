@@ -2,9 +2,9 @@
     "dev": {
         "host": "localhost",
         "user": "root",
-        "password": "1234",
+        "password": "",
         "database": "ubmk",
-        "driver": "mysql",
+        "driver": "",
         "multipleStatements": true
     }
 }
