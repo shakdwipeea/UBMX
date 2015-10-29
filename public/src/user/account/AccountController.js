@@ -13,8 +13,8 @@ Created By : Shreyansh Nahata
 			console.log(Account.isloggedIn());
 
 			self.logout = function(){
-				//self.loggedin = false;
 				Account.logout();
+				self.loggedin = false;
 			};
 		});
 })();
