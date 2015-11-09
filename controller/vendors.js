@@ -17,6 +17,7 @@ var Vendor = {
         } else if (vendors.length === 0) {
           pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
               cb(err);
             } else {
               var query = mysql.format('INSERT INTO vendor SET ?', vendor);
@@ -35,6 +36,8 @@ var Vendor = {
     getVendor (email, cb)  {
       pool.getConnection((err, conn) => {
         if (err) {
+          conn.release();
+          conn.release();
           cb(err, null);
         } else {
           var query = mysql.format('SELECT * FROM vendor WHERE email = ?',[email]);
@@ -51,6 +54,7 @@ var Vendor = {
     getAllVendors (cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
                 return cb(err, null);
             }
 
@@ -90,6 +94,7 @@ var Vendor = {
     getVendorById (id, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
                 return cb(err, null);
             }
 
@@ -115,6 +120,7 @@ var Vendor = {
         addBookingType (data, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
                 return cb(err, null);
             }
 
@@ -141,6 +147,7 @@ var Vendor = {
         addProblemType (data, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
                 return cb(err, null);
             }
 
@@ -161,6 +168,7 @@ var Vendor = {
     getByLocation (location, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
                 return cb(err, null);
             }
 
