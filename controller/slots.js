@@ -10,6 +10,7 @@ var Slots = {
     getVendorSlots (vendor_id, slot_day, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+                conn.release();
                 return cb(err, null);
             }
 
@@ -23,6 +24,7 @@ var Slots = {
     addSlot (slot, cb) {
         pool.getConnection ((err, conn) => {
            if (err) {
+                conn.release();
                return cb(err, null);
            }
 
@@ -40,6 +42,7 @@ var Slots = {
     updateSlot (slot, originalSlot, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+                conn.release();
                 return cb(err, null);
             }
 

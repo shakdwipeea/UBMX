@@ -9,10 +9,12 @@ var BookingType = {
     getAllBookingType (cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+                conn.release();
                 return cb(err, null);
             }
 
             conn.query("SELECT * FROM booking_type", (err, rows) => {
+                conn.release();
                 cb(err, rows);
             })
         })
@@ -26,6 +28,7 @@ var BookingType = {
         addBookingType (type, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+                conn.release();
                 return cb(err, null);
             }
 

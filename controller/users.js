@@ -19,6 +19,7 @@ var user = {
         } else if (users.length === 0) {
           pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
               cb(err);
             } else {
               var query = mysql.format('INSERT INTO user SET ?', user);
@@ -37,6 +38,7 @@ var user = {
     getUser (email, cb)  {
       pool.getConnection((err, conn) => {
         if (err) {
+          conn.release();
           cb(err, null);
         } else {
           var query = mysql.format('SELECT * FROM user WHERE email = ?',[email]);
@@ -53,6 +55,7 @@ var user = {
     getAllUsers (cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+              conn.release();
                 cb(err, null);
                 return;
             }

@@ -9,10 +9,12 @@ var Problems = {
     getAllProblems (cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+                conn.release();
                 return cb(err, null);
             }
 
             conn.query("SELECT * FROM problem", (err, rows) => {
+                conn.release();
                 cb(err, rows);
             })
         })
@@ -24,6 +26,7 @@ var Problems = {
         addProblem (type, cb) {
         pool.getConnection((err, conn) => {
             if (err) {
+                conn.release();
                 return cb(err, null);
             }
 

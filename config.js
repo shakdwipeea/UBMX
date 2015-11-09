@@ -2,8 +2,9 @@ module.exports = {
   database: {
     host: 'localhost',
     user: 'root',
-    password: '1234',
-    database: 'ubmk'
+    password: '',
+    database: 'ubmk',
+    connectionLimit: 5
   },
   jwt: {
     secret: 'h76js!@$uh3&@'
