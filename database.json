@@ -4,7 +4,7 @@
         "user": "root",
         "password": "",
         "database": "ubmk",
-        "driver": "mysql",
+        "driver": "",
         "multipleStatements": true
     }
 }

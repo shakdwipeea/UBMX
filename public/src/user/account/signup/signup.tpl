@@ -25,7 +25,7 @@
                 <label for="password">Phone</label>
             </div>
             <div class=" col s12">
-                <button ng-disabled="!signup.enable" class="mui-btn mui-btn--raised" type="submit" name="action">
+                <button  class="mui-btn mui-btn--raised" type="submit" name="action">
                     Sign Up
                     <i class="material-icons">send</i>
                 </button>
