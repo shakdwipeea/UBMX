@@ -37,6 +37,31 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/lat_lng', (req, res) => {
+    var lat = req.query.lat,
+        lng = req.query.lng;
+
+    console.log("lat and lng");
+    vendor.getAllVendors((err, vendors) => {
+        if (err) {
+            res.status(500).json({
+                "error": err
+            });
+        } else {
+            console.log("LAt and Lng", lat, lng);
+            vendors = vendors.filter((vendor) => {
+                var distance = vincenty.distVincenty(lat, lng, vendor.lat, vendor.lng).distance;
+                console.log(distance);
+                return distance < 30000;
+            });
+
+            res.json({
+                "vendors": vendors
+            });
+        }
+    });
+});
+
 
 router.get('/:location', (req, res) => {
     vendor.getByLocation(req.params.location, (err, rows) => {
@@ -53,24 +78,6 @@ router.get('/:location', (req, res) => {
 });
 
 
-router.get('/lat_lng', (req, res) => {
-    var lat = req.query.lat,
-        lng = req.query.lng;
-
-    vendor.getAllVendors((err, vendors) => {
-        if (err) {
-            res.status(500).json({
-                "error": err
-            });
-        } else {
-            vendors = vendors.filter((vendor) => vincenty.distVincenty(lat, lng, vendor.lat, vendor.lng) < 3000);
-
-            res.json({
-                "vendors": vendors
-            });
-        }
-    });
-});
 
 
 /**
