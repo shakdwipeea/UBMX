@@ -2,9 +2,8 @@ module.exports = {
   database: {
     host: 'localhost',
     user: 'root',
-    password: '1234',
-    database: 'ubmk',
-    connectionLimit: 5
+    password: '',
+    database: 'ubmk'
   },
   jwt: {
     secret: 'h76js!@$uh3&@'
@@ -13,3 +12,4 @@ module.exports = {
     salt: 'uje^%3j*^$)*&'
   }
 };
+
