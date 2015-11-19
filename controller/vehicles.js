@@ -8,7 +8,6 @@ var helper = require('../lib/helper');
 exports.getAllVehicles = (cb) => {
     pool.getConnection((err, conn) => {
         if (err) {
-            conn.release();
             return cb(err, null);
         }
 
